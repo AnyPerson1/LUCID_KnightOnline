@@ -44,8 +44,8 @@
                 <views:HomePageControl />
             </TabItem>
             
-            <TabItem Header="Makrolar" IsSelected="True">
-                <views:MacroPageControl />
+            <TabItem Header="Makrolar" IsSelected="True" Name="MacroTabControlContainer">
+                
             </TabItem>
             
             <TabItem Header="Ayarlar">

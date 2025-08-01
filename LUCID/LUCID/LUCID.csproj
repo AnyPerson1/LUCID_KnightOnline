@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<Folder Include="Models\" />
 	<AvaloniaResource Include="Assets\**" />
 	  <AvaloniaResource Include="Styles\Colors.axaml" />
 	  <AvaloniaResource Include="Styles\Styles.axaml" />
@@ -32,16 +31,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Controls\MacroPageControl.axaml.cs">
-      <DependentUpon>MacroPageControl.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\HeaderControl.axaml.cs">
       <DependentUpon>HeaderControl.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\HomePageControl.axaml.cs">
       <DependentUpon>HomePageControl.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MacroPageControl.axaml.cs">
+      <DependentUpon>MacroPageControl.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

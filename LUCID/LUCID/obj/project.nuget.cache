@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X7Ua+YgR8Ms=",
+  "dgSpecHash": "91maq1NrApM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\LUCID.csproj",
+  "projectFilePath": "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arda4\\.nuget\\packages\\avalonia\\11.3.2\\avalonia.11.3.2.nupkg.sha512",
     "C:\\Users\\arda4\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.25547.20250602\\avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",

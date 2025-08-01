@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\LUCID.csproj": {}
+    "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\LUCID.csproj": {
+    "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\LUCID.csproj",
+        "projectUniqueName": "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj",
         "projectName": "LUCID",
-        "projectPath": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\LUCID.csproj",
+        "projectPath": "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj",
         "packagesPath": "C:\\Users\\arda4\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\obj\\",
+        "outputPath": "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

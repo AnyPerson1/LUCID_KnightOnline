@@ -11,56 +11,56 @@
             <TabControl DockPanel.Dock="Top" Classes="MacroTabs" HorizontalAlignment="Center">
                 <TabItem Header="Kalkan Macro" IsSelected="True">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="KalkanMacroContainer" Spacing="0">
+                        <StackPanel Name="KalkanMacro" Spacing="0">
                             <controls:MacroItemControl/>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Warrior">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="WarriorMacroContainer" Spacing="0">
+                        <StackPanel Name="WarriorMacro" Spacing="0">
                             <!-- Dinamik makrolar buraya eklenecek -->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Assassin">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="AssassinMacroContainer" Spacing="0">
+                        <StackPanel Name="AssassinMacro" Spacing="0">
                             <!-- Dinamik makrolar buraya eklenecek -->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Archery">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="ArcheryMacroContainer" Spacing="0">
+                        <StackPanel Name="ArcheryMacro" Spacing="0">
                             <!-- Dinamik makrolar buraya eklenecek -->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Priest">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="PriestMacroContainer" Spacing="0">
+                        <StackPanel Name="PriestMacro" Spacing="0">
                             <!-- Dinamik makrolar buraya eklenecek -->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Oto Pot / Minor">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="AutoPotMacroContainer" Spacing="0">
+                        <StackPanel Name="AutoPotMacro" Spacing="0">
                             <!-- Dinamik makrolar buraya eklenecek -->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Upgrade">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="UpgradeMacroContainer" Spacing="0">
+                        <StackPanel Name="UpgradeMacro" Spacing="0">
                             <!-- Dinamik makrolar buraya eklenecek -->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Farm">
                     <ScrollViewer Padding="20,12,20,20">
-                        <StackPanel Name="FarmMacroContainer" Spacing="0">
+                        <StackPanel Name="FarmMacro" Spacing="0">
                             <!-- Dinamik makrolar buraya eklenecek -->
                         </StackPanel>
                     </ScrollViewer>
