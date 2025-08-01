@@ -1,2 +1,4 @@
 # LUCID_KnightOnline
-no system is safe
+
+
+Nothing exciting here, just a low-level nerd and a bunch of exploits of well-known softwares.
