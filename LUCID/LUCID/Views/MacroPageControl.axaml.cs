@@ -19,25 +19,18 @@ public partial class MacroPageControl : UserControl
         Macros = new ObservableCollection<MacroItemViewModel>();
         InitializeComponent();
         
-        this.Loaded += MacroPageControl_Loaded;
         
     }
-    
-    private void MacroPageControl_Loaded(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public void AddMacroToList(MacroItem data)
     {
-        AddMacroToList(true, "Test Makro", "Bu test makrosu yüklendi.", 100, "Space", Tab.KalkanMacro);
-        AddMacroToList(false, "Warrior Test", "Savaşçı makrosu.", 250, "F2", Tab.WarriorMacro);
-    }
-    private void AddMacroToList(bool active, string header, string desc, int speed, string hk, Tab tab)
-    {
-        MacroItemViewModel vm = new MacroItemViewModel
+        var vm = new MacroItemViewModel
         {
-            isActive = active,
-            macroHeader = header,
-            macroDescription = desc,
-            macroSpeed = speed,
-            macroHotkey = hk,
-            macroTab = tab
+            isActive = data.isActive,
+            macroHeader = data.macroHeader,
+            macroDescription = data.macroDescription,
+            macroSpeed = data.macroSpeed,
+            macroHotkey = data.macroHotkey,
+            macroTab = data.macroTab
         };
         var nmc = new MacroItemControl();
         nmc.DataContext = vm;
