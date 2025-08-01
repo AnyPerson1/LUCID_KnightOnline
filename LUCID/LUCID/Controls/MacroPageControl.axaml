@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="LUCID.Views.MacroPageControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:LUCID.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450">
+    
+    <DockPanel Margin="5,0,5,5">
+        <Border BorderThickness="2" CornerRadius="25" Background="{StaticResource BackgroundSecondary}">
+            <TabControl DockPanel.Dock="Top" Classes="MacroTabs" HorizontalAlignment="Center">
+                <TabItem Header="Kalkan Macro" IsSelected="True">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="KalkanMacroContainer" Spacing="0">
+                            <controls:MacroItemControl/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Warrior">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="WarriorMacroContainer" Spacing="0">
+                            <!-- Dinamik makrolar buraya eklenecek -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Assassin">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="AssassinMacroContainer" Spacing="0">
+                            <!-- Dinamik makrolar buraya eklenecek -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Archery">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="ArcheryMacroContainer" Spacing="0">
+                            <!-- Dinamik makrolar buraya eklenecek -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Priest">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="PriestMacroContainer" Spacing="0">
+                            <!-- Dinamik makrolar buraya eklenecek -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Oto Pot / Minor">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="AutoPotMacroContainer" Spacing="0">
+                            <!-- Dinamik makrolar buraya eklenecek -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Upgrade">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="UpgradeMacroContainer" Spacing="0">
+                            <!-- Dinamik makrolar buraya eklenecek -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Farm">
+                    <ScrollViewer Padding="20,12,20,20">
+                        <StackPanel Name="FarmMacroContainer" Spacing="0">
+                            <!-- Dinamik makrolar buraya eklenecek -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </DockPanel>
+    
+</UserControl>

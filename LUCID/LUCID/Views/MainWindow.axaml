@@ -1,0 +1,60 @@
+<Window
+    x:Class="LUCID.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:LUCID.ViewModels"
+    xmlns:views="using:LUCID.Views"
+    Title="LUCID - Makro Uygulaması"
+    Width="900"
+    Height="600"
+    MinWidth="700"
+    MinHeight="500"
+    d:DesignHeight="600"
+    d:DesignWidth="900"
+    x:DataType="vm:MainWindowViewModel"
+    Icon="/Assets/avalonia-logo.ico"
+    mc:Ignorable="d"
+    Background="#0D1117"
+    Foreground="#E6EDF3"
+    WindowStartupLocation="CenterScreen">
+    
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    
+
+
+    <Window.Resources>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <views:HeaderControl Grid.Row="0" />
+        
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" Classes="CustomTabs" Background="{StaticResource BackgroundPrimary}">
+            <TabItem Header="Ana Sayfa">
+                <views:HomePageControl />
+            </TabItem>
+            
+            <TabItem Header="Makrolar" IsSelected="True">
+                <views:MacroPageControl />
+            </TabItem>
+            
+            <TabItem Header="Ayarlar">
+                <views:SettingsPageControl />
+            </TabItem>
+            
+            <TabItem Header="Hakkında">
+                <views:AboutPageControl />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

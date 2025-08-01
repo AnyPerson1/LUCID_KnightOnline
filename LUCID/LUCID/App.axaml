@@ -1,0 +1,28 @@
+<Application
+    x:Class="LUCID.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCID"
+    RequestedThemeVariant="Dark">
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Renk tanımlarını içeren ResourceDictionary'yi buraya dahil ediyoruz -->
+                <ResourceInclude Source="Styles/Colors.axaml"  />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+    <Application.Styles>
+        <FluentTheme />
+        
+        <!-- Kendi TabItem stil dosyamızı buraya birleştiriyoruz -->
+        <StyleInclude Source="avares://LUCID/Styles/Styles.axaml" />
+
+    </Application.Styles>
+</Application>

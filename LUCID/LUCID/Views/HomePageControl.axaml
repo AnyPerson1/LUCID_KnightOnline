@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="LUCID.Views.HomePageControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450">
+    
+    <ScrollViewer Padding="24">
+        <StackPanel Spacing="24">
+            
+            <!-- Welcome Section -->
+            <Border Background="{StaticResource BackgroundSecondary}" 
+                    BorderBrush="{StaticResource BorderBrush}" 
+                    BorderThickness="1" 
+                    CornerRadius="12" 
+                    Padding="24">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="LUCID'e Hoş Geldiniz" 
+                              FontSize="24" 
+                              FontWeight="Bold" 
+                              Foreground="{StaticResource TextPrimary}" />
+                    <TextBlock Text="Makro uygulamanız hazır ve kullanıma hazır." 
+                              FontSize="14" 
+                              Foreground="{StaticResource TextSecondary}" />
+                </StackPanel>
+            </Border>
+            
+            <!-- Quick Stats -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0" Background="{StaticResource BackgroundSecondary}" 
+                        BorderBrush="{StaticResource BorderBrush}" 
+                        BorderThickness="1" 
+                        CornerRadius="12" 
+                        Padding="16" 
+                        Margin="0,0,8,0">
+                    <StackPanel>
+                        <TextBlock Text="Aktif Makrolar" FontSize="12" Foreground="{StaticResource TextSecondary}" />
+                        <TextBlock Text="0" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" />
+                    </StackPanel>
+                </Border>
+                
+                <Border Grid.Column="1" Background="{StaticResource BackgroundSecondary}" 
+                        BorderBrush="{StaticResource BorderBrush}" 
+                        BorderThickness="1" 
+                        CornerRadius="12" 
+                        Padding="16" 
+                        Margin="4,0">
+                    <StackPanel>
+                        <TextBlock Text="Toplam Makro" FontSize="12" Foreground="{StaticResource TextSecondary}" />
+                        <TextBlock Text="0" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" />
+                    </StackPanel>
+                </Border>
+                
+                <Border Grid.Column="2" Background="{StaticResource BackgroundSecondary}" 
+                        BorderBrush="{StaticResource BorderBrush}" 
+                        BorderThickness="1" 
+                        CornerRadius="12" 
+                        Padding="16" 
+                        Margin="8,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Durum" FontSize="12" Foreground="{StaticResource TextSecondary}" />
+                        <TextBlock Text="Hazır" FontSize="20" FontWeight="Bold" Foreground="{StaticResource SuccessBrush}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+            
+        </StackPanel>
+    </ScrollViewer>
+    
+</UserControl>

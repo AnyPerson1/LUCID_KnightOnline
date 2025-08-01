@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|c:\\users\\arda4\\desktop\\github\\c# forms\\avalonia\\lucid\\lucid\\lucid.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|solutionrelative:lucid\\lucid.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|c:\\users\\arda4\\desktop\\github\\c# forms\\avalonia\\lucid\\lucid\\app.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|solutionrelative:lucid\\app.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|c:\\users\\arda4\\desktop\\github\\c# forms\\avalonia\\lucid\\lucid\\views\\mainwindow.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|solutionrelative:lucid\\views\\mainwindow.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|c:\\users\\arda4\\desktop\\github\\c# forms\\avalonia\\lucid\\lucid\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|solutionrelative:lucid\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|c:\\users\\arda4\\desktop\\github\\c# forms\\avalonia\\lucid\\lucid\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3229D0F9-65D8-4CF0-85B7-D7B2E99E824D}|LUCID\\LUCID.csproj|solutionrelative:lucid\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LUCID.csproj",
+              "DocumentMoniker": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\LUCID.csproj",
+              "RelativeDocumentMoniker": "LUCID\\LUCID.csproj",
+              "ToolTip": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\LUCID.csproj",
+              "RelativeToolTip": "LUCID\\LUCID.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-07-29T19:13:31.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\App.axaml.cs",
+              "RelativeDocumentMoniker": "LUCID\\App.axaml.cs",
+              "ToolTip": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\App.axaml.cs",
+              "RelativeToolTip": "LUCID\\App.axaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T19:01:41.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.axaml",
+              "DocumentMoniker": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\App.axaml",
+              "RelativeDocumentMoniker": "LUCID\\App.axaml",
+              "ToolTip": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\App.axaml",
+              "RelativeToolTip": "LUCID\\App.axaml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAwwDYAAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-29T19:01:38.776Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\Views\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "LUCID\\Views\\MainWindow.axaml",
+              "ToolTip": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\Views\\MainWindow.axaml",
+              "RelativeToolTip": "LUCID\\Views\\MainWindow.axaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-29T15:59:25.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindowViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\ViewModels\\MainWindowViewModel.cs",
+              "RelativeDocumentMoniker": "LUCID\\ViewModels\\MainWindowViewModel.cs",
+              "ToolTip": "C:\\Users\\arda4\\Desktop\\Github\\C# Forms\\Avalonia\\LUCID\\LUCID\\ViewModels\\MainWindowViewModel.cs",
+              "RelativeToolTip": "LUCID\\ViewModels\\MainWindowViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-29T15:59:23.983Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

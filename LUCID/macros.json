@@ -1,0 +1,70 @@
+{
+  "hotkeyStartStop": "F5",
+  "hotkeyHideShow": "F8",
+  "aktifSkillerMacros": [
+    {
+      "id": "950f943f-fd32-436d-99f6-a513ba833512",
+      "isEnabled": true,
+      "keyboardKey": "Y",
+      "interval": 1,
+      "predelay": 1,
+      "macroType": 0,
+      "nextExecutionTime": "0001-01-01T00:00:00"
+    }
+  ],
+  "pasifSkillerMacros": [],
+  "otomatikTownMacros": [],
+  "yemekFoodPotMacros": [],
+  "hpBarRegion": {
+    "location": {
+      "isEmpty": false,
+      "x": 92,
+      "y": 61
+    },
+    "size": {
+      "isEmpty": false,
+      "width": 187,
+      "height": 10
+    },
+    "x": 92,
+    "y": 61,
+    "width": 187,
+    "height": 10,
+    "left": 92,
+    "top": 61,
+    "right": 279,
+    "bottom": 71,
+    "isEmpty": false
+  },
+  "mpBarRegion": {
+    "location": {
+      "isEmpty": false,
+      "x": 92,
+      "y": 78
+    },
+    "size": {
+      "isEmpty": false,
+      "width": 187,
+      "height": 10
+    },
+    "x": 92,
+    "y": 78,
+    "width": 187,
+    "height": 10,
+    "left": 92,
+    "top": 78,
+    "right": 279,
+    "bottom": 88,
+    "isEmpty": false
+  },
+  "hpLimitValue": 80,
+  "mpLimitValue": 80,
+  "hpPotKey": 2,
+  "mpPotKey": 3,
+  "hpPriority": true,
+  "smartPotEnabled": true,
+  "calibratedHpRatio": 84.919786096256686,
+  "calibratedMpRatio": 95.080213903743314,
+  "hpRegionSelected": true,
+  "mpRegionSelected": true
+}

@@ -1,0 +1,329 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- =========================== USER CONTROLS ============================ -->
+    
+    
+
+    <!-- =========================== BUTTON STYLES =========================== -->
+    
+    <Style Selector="Button.Primary">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.Primary:pointerover">
+        <Setter Property="Background" Value="{StaticResource PrimaryHoverBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryHoverBrush}" />
+    </Style>
+    
+    <Style Selector="Button.Primary:pressed">
+        <Setter Property="Background" Value="{StaticResource PrimaryPressedBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryPressedBrush}" />
+    </Style>
+    
+    <Style Selector="Button.Secondary">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.Secondary:pointerover">
+        <Setter Property="Background" Value="{StaticResource SecondaryHoverBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderHoverBrush}" />
+    </Style>
+    
+    <Style Selector="Button.HeaderButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.HeaderButton:pointerover">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+    </Style>
+    
+    <Style Selector="Button.KeyButton">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.KeyButton:pointerover">
+        <Setter Property="Background" Value="{StaticResource SecondaryHoverBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderHoverBrush}" />
+    </Style>
+    
+    <Style Selector="Button.KeyButton:pressed">
+        <Setter Property="Background" Value="{StaticResource BorderBrush}" />
+    </Style>
+    
+    <!-- =========================== TOGGLE BUTTON STYLES =========================== -->
+    
+    <Style Selector="ToggleButton.MacroToggle">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                       BorderBrush="{TemplateBinding BorderBrush}"
+                       BorderThickness="{TemplateBinding BorderThickness}"
+                       CornerRadius="{TemplateBinding CornerRadius}">
+                    <Ellipse Width="20" Height="20" 
+                            Fill="{StaticResource TextSecondary}"
+                            HorizontalAlignment="Left"
+                            Margin="2,0,0,0">
+                        <Ellipse.Transitions>
+                            <Transitions>
+                                <ThicknessTransition Property="Margin" Duration="0:0:0.2"/>
+                            </Transitions>
+                        </Ellipse.Transitions>
+                    </Ellipse>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="ToggleButton.MacroToggle:checked">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                       BorderBrush="{TemplateBinding BorderBrush}"
+                       BorderThickness="{TemplateBinding BorderThickness}"
+                       CornerRadius="{TemplateBinding CornerRadius}">
+                    <Ellipse Width="20" Height="20" 
+                            Fill="White"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,2,0">
+                        <Ellipse.Transitions>
+                            <Transitions>
+                                <ThicknessTransition Property="Margin" Duration="0:0:0.2"/>
+                            </Transitions>
+                        </Ellipse.Transitions>
+                    </Ellipse>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="ToggleButton.MacroToggle:pointerover">
+        <Setter Property="Opacity" Value="0.8" />
+    </Style>
+    
+    <!-- =========================== TAB STYLES =========================== -->
+    
+    <Style Selector="TabControl.CustomTabs">
+        <Setter Property="Background" Value="{StaticResource BackgroundPrimary}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    
+    <Style Selector="TabControl.CustomTabs > TabStrip">
+        <Setter Property="Background" Value="{StaticResource BackgroundSecondary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="Padding" Value="20,0" />
+    </Style>
+    
+    <Style Selector="TabControl.CustomTabs TabItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="Margin" Value="0,0,8,0" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Foreground" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TabControl.CustomTabs TabItem:pointerover">
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+    </Style>
+    
+    <Style Selector="TabControl.CustomTabs TabItem:selected">
+        <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+    </Style>
+    
+    <Style Selector="TabControl.MacroTabs">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+    </Style>
+    
+    <Style Selector="TabControl.MacroTabs > TabStrip">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+    
+    <Style Selector="TabControl.MacroTabs TabItem">
+        <Setter Property="Background" Value="{StaticResource BackgroundTertiary}" />
+        <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="25" />
+        <Setter Property="Padding" Value="16,10" />
+        <Setter Property="Margin" Value="0,10,8,0" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+                <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TabControl.MacroTabs TabItem:pointerover">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderHoverBrush}" />
+    </Style>
+    
+    <Style Selector="TabControl.MacroTabs TabItem:selected">
+        <Setter Property="Background" Value="{StaticResource BackgroundPrimary}" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="ZIndex" Value="1" />
+        <Setter Property="Effect">
+            <DropShadowEffect Color="{StaticResource PrimaryColor}" 
+                            BlurRadius="15" 
+                            Opacity="1" OffsetX="0" OffsetY="0"/>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TabControl.MacroTabs > ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource BackgroundPrimary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0,8,0,0" />
+        <Setter Property="Effect">
+            <DropShadowEffect Color="{StaticResource BorderColor}" 
+                            BlurRadius="20" 
+                            Opacity="0.3" />
+        </Setter>
+    </Style>
+    
+    <!-- =========================== TEXT & INPUT STYLES =========================== -->
+    
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="SelectionBrush" Value="{StaticResource PrimaryBrush}" />
+        <Setter Property="CaretBrush" Value="{StaticResource TextPrimary}" />
+    </Style>
+    
+    <Style Selector="TextBox:focus">
+        <Setter Property="BorderBrush" Value="{StaticResource BorderFocusBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
+    </Style>
+    
+    <Style Selector="TextBox:pointerover">
+        <Setter Property="BorderBrush" Value="{StaticResource BorderHoverBrush}" />
+    </Style>
+    
+    <Style Selector="NumericUpDown.SpeedInput">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+    
+    <Style Selector="NumericUpDown.SpeedInput:focus">
+        <Setter Property="BorderBrush" Value="{StaticResource BorderFocusBrush}" />
+    </Style>
+    
+    <Style Selector="ComboBox">
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    
+    <Style Selector="ComboBox:focus">
+        <Setter Property="BorderBrush" Value="{StaticResource BorderFocusBrush}" />
+    </Style>
+    
+    <Style Selector="ComboBox:pointerover">
+        <Setter Property="BorderBrush" Value="{StaticResource BorderHoverBrush}" />
+    </Style>
+    
+</Styles>

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="LUCID.Views.SettingsPageControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450">
+    
+    <ScrollViewer Padding="24">
+        <StackPanel Spacing="24">
+            
+            <!-- General Settings -->
+            <Border Background="{StaticResource BackgroundSecondary}" 
+                    BorderBrush="{StaticResource BorderBrush}" 
+                    BorderThickness="1" 
+                    CornerRadius="12" 
+                    Padding="24">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Genel Ayarlar" 
+                              FontSize="18" 
+                              FontWeight="SemiBold" 
+                              Foreground="{StaticResource TextPrimary}" />
+                    
+                    <!-- Placeholder for settings -->
+                    <TextBlock Text="Ayarlar buraya eklenecek..." 
+                              FontSize="14" 
+                              Foreground="{StaticResource TextSecondary}" />
+                </StackPanel>
+            </Border>
+            
+            <!-- Hotkey Settings -->
+            <Border Background="{StaticResource BackgroundSecondary}" 
+                    BorderBrush="{StaticResource BorderBrush}" 
+                    BorderThickness="1" 
+                    CornerRadius="12" 
+                    Padding="24">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Kısayol Tuşları" 
+                              FontSize="18" 
+                              FontWeight="SemiBold" 
+                              Foreground="{StaticResource TextPrimary}" />
+                    
+                    <!-- Placeholder for hotkey settings -->
+                    <TextBlock Text="Kısayol ayarları buraya eklenecek..." 
+                              FontSize="14" 
+                              Foreground="{StaticResource TextSecondary}" />
+                </StackPanel>
+            </Border>
+            
+        </StackPanel>
+    </ScrollViewer>
+    
+</UserControl>

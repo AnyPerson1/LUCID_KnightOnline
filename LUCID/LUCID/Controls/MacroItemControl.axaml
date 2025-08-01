@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="LUCID.Controls.MacroItemControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="50">
+    
+    <Border Name="MainBorder"
+            Background="{StaticResource BackgroundSecondary}" 
+            BorderBrush="{StaticResource BorderBrush}" 
+            BorderThickness="1" 
+            CornerRadius="8" 
+            Padding="16,10" 
+            Margin="0"
+            Height="50">
+        
+        <Border.Styles>
+            <!-- Normal durum -->
+            <Style Selector="Border">
+                <Setter Property="Background" Value="{StaticResource BackgroundSecondary}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+                <Setter Property="Transitions">
+                    <Transitions>
+                        <BrushTransition Property="Background" Duration="0:0:0.4"/>
+                        <BrushTransition Property="BorderBrush" Duration="0:0:0.4"/>
+                    </Transitions>
+                </Setter>
+            </Style>
+        </Border.Styles>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Makro Durumu (Açık/Kapalı) -->
+            <StackPanel Grid.Column="0" Margin="0,0,16,0" VerticalAlignment="Center">
+                <TextBlock Text="Durum" 
+                          FontSize="9" 
+                          Foreground="{StaticResource TextSecondary}" 
+                          Margin="0,0,0,2"
+                          HorizontalAlignment="Center" />
+                
+                <CheckBox Name="MacroCheckbox"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         Cursor="Hand">
+                    
+                    <CheckBox.Template>
+                        <ControlTemplate>
+                            <Border Width="18" 
+                                   Height="18" 
+                                   Background="{StaticResource BackgroundTertiary}"
+                                   BorderBrush="{StaticResource BorderBrush}"
+                                   BorderThickness="2"
+                                   CornerRadius="4">
+                                
+                                <!-- Checkmark -->
+                                <TextBlock Text="✓" 
+                                          FontSize="12" 
+                                          FontWeight="Bold"
+                                          Foreground="{StaticResource PrimaryBrush}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"
+                                          IsVisible="False"
+                                          Name="CheckMark">
+                                    <TextBlock.Transitions>
+                                        <Transitions>
+                                            <DoubleTransition Property="Opacity" Duration="0:0:0.3"/>
+                                        </Transitions>
+                                    </TextBlock.Transitions>
+                                </TextBlock>
+                            </Border>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                    
+                    <CheckBox.Styles>
+                        <!-- Checked durumu -->
+                        <Style Selector="CheckBox:checked /template/ Border">
+                            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+                        </Style>
+                        
+                        <Style Selector="CheckBox:checked /template/ TextBlock#CheckMark">
+                            <Setter Property="IsVisible" Value="True" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Style>
+                        
+                        <!-- Hover efekti -->
+                        <Style Selector="CheckBox:pointerover /template/ Border">
+                            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+                            <Setter Property="Opacity" Value="0.8" />
+                        </Style>
+                    </CheckBox.Styles>
+                </CheckBox>
+            </StackPanel>
+            
+            <!-- Makro Bilgileri (İsim ve Açıklama) -->
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,16,0">
+                <TextBlock Text="Makro Bilgileri" 
+                          FontSize="9" 
+                          Foreground="{StaticResource TextSecondary}" 
+                          Margin="0,0,0,2" />
+                
+                <TextBlock Name="MacroName" 
+                          Text="Kalkan Tak" 
+                          FontSize="14" 
+                          FontWeight="Medium" 
+                          Foreground="{StaticResource TextPrimary}" 
+                          Margin="0,0,0,2" />
+                <TextBlock Name="MacroDescription" 
+                          Text="Otomatik kalkan kullanımı" 
+                          FontSize="11" 
+                          Foreground="{StaticResource TextSecondary}" />
+            </StackPanel>
+            
+            <!-- Hız Ayarı (Milisaniye) -->
+            <StackPanel Grid.Column="2" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,16,0">
+                
+                <TextBlock Text="Hız Ayarı" 
+                          FontSize="9" 
+                          Foreground="{StaticResource TextSecondary}" 
+                          Margin="0,0,0,2"
+                          HorizontalAlignment="Center" />
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Border Background="{StaticResource BackgroundTertiary}"
+                           BorderBrush="{StaticResource BorderBrush}"
+                           BorderThickness="1"
+                           CornerRadius="6">
+                        <NumericUpDown Name="SpeedMs" 
+                                       Value="100" 
+                                       Minimum="50" 
+                                       Maximum="5000" 
+                                       Increment="50"
+                                       Width="90"
+                                       Height="26"
+                                       FontSize="12"
+                                       Background="Transparent"
+                                       BorderThickness="0"
+                                       Classes="SpeedInput" />
+                    </Border>
+                    
+                    <TextBlock Text="ms" 
+                              FontSize="10" 
+                              Foreground="{StaticResource TextSecondary}" 
+                              VerticalAlignment="Center" 
+                              Margin="6,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+            
+            <!-- Tuş Ataması -->
+            <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                <TextBlock Text="Tuş Ataması" 
+                          FontSize="9" 
+                          Foreground="{StaticResource TextSecondary}" 
+                          Margin="0,0,0,2"
+                          HorizontalAlignment="Center" />
+                
+                <Button Name="KeyAssignButton" 
+                       Content="F1" 
+                       Width="55" 
+                       Height="26"
+                       FontSize="11"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0"
+                       Background="{StaticResource BackgroundTertiary}"
+                       BorderBrush="{StaticResource BorderBrush}"
+                       BorderThickness="1"
+                       CornerRadius="6"
+                       Foreground="{StaticResource TextPrimary}"
+                       Cursor="Hand">
+                    <Button.Styles>
+                        <Style Selector="Button:pointerover">
+                            <Setter Property="Background" Value="{StaticResource SecondaryHoverBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+                        </Style>
+                    </Button.Styles>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+    
+</UserControl>

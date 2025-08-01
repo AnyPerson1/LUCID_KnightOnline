@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="LUCID/App.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Controls/HeaderControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Controls/HomePageControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Controls/MacroItemControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Controls/MacroPageControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Controls/TabStyles.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Styles/ButtonStyles.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Styles/Colors.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Styles/Styles.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Styles/TabStyles.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Styles/TextStyles.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Views/AboutPageControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Views/HeaderControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Views/HomePageControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Views/MacroPageControl.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Views/MainWindow.axaml" value="LUCID/LUCID.csproj" />
+        <entry key="LUCID/Views/SettingsPageControl.axaml" value="LUCID/LUCID.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

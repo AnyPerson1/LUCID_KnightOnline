@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Primary Green Colors -->
+    <Color x:Key="PrimaryColor">#00D26A</Color>
+    <Color x:Key="PrimaryHoverColor">#00B85C</Color>
+    <Color x:Key="PrimaryPressedColor">#00A051</Color>
+    
+    <!-- Background Colors (Dark Theme) -->
+    <Color x:Key="BackgroundPrimaryColor">#0D1117</Color>
+    <Color x:Key="BackgroundSecondaryColor">#161B22</Color>
+    <Color x:Key="BackgroundTertiaryColor">#21262D</Color>
+    
+    <!-- Text Colors -->
+    <Color x:Key="TextPrimaryColor">#E6EDF3</Color>
+    <Color x:Key="TextSecondaryColor">#7D8590</Color>
+    <Color x:Key="TextTertiaryColor">#484F58</Color>
+    
+    <!-- Border Colors -->
+    <Color x:Key="BorderColor">#30363D</Color>
+    <Color x:Key="BorderHoverColor">#484F58</Color>
+    <Color x:Key="BorderFocusColor">#00D26A</Color>
+    
+    <!-- Status Colors -->
+    <Color x:Key="SuccessColor">#238636</Color>
+    <Color x:Key="WarningColor">#D29922</Color>
+    <Color x:Key="ErrorColor">#DA3633</Color>
+    <Color x:Key="InfoColor">#1F6FEB</Color>
+    
+    <!-- Accent Green Colors -->
+    <Color x:Key="AccentColor">#39D87A</Color>
+    <Color x:Key="AccentHoverColor">#2EA043</Color>
+    
+    <!-- Additional Green Shades -->
+    <Color x:Key="GreenLightColor">#56D364</Color>
+    <Color x:Key="GreenDarkColor">#238636</Color>
+    
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+    <SolidColorBrush x:Key="PrimaryHoverBrush" Color="{StaticResource PrimaryHoverColor}" />
+    <SolidColorBrush x:Key="PrimaryPressedBrush" Color="{StaticResource PrimaryPressedColor}" />
+    
+    <SolidColorBrush x:Key="BackgroundPrimary" Color="{StaticResource BackgroundPrimaryColor}" />
+    <SolidColorBrush x:Key="BackgroundSecondary" Color="{StaticResource BackgroundSecondaryColor}" />
+    <SolidColorBrush x:Key="BackgroundTertiary" Color="{StaticResource BackgroundTertiaryColor}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource BackgroundSecondaryColor}" />
+    <SolidColorBrush x:Key="SecondaryHoverBrush" Color="{StaticResource BackgroundTertiaryColor}" />
+    
+    <SolidColorBrush x:Key="TextPrimary" Color="{StaticResource TextPrimaryColor}" />
+    <SolidColorBrush x:Key="TextSecondary" Color="{StaticResource TextSecondaryColor}" />
+    <SolidColorBrush x:Key="TextTertiary" Color="{StaticResource TextTertiaryColor}" />
+    
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
+    <SolidColorBrush x:Key="BorderHoverBrush" Color="{StaticResource BorderHoverColor}" />
+    <SolidColorBrush x:Key="BorderFocusBrush" Color="{StaticResource BorderFocusColor}" />
+    
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}" />
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}" />
+    <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource InfoColor}" />
+    
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}" />
+    
+    <!-- Green Theme Specific Brushes -->
+    <SolidColorBrush x:Key="GreenLightBrush" Color="{StaticResource GreenLightColor}" />
+    <SolidColorBrush x:Key="GreenDarkBrush" Color="{StaticResource GreenDarkColor}" />
+    
+</ResourceDictionary>

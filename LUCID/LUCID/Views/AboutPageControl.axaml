@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="LUCID.Views.AboutPageControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450">
+    
+    <ScrollViewer Padding="24">
+        <StackPanel Spacing="24" HorizontalAlignment="Center" MaxWidth="600">
+            
+            <!-- App Info -->
+            <Border Background="{StaticResource BackgroundSecondary}" 
+                    BorderBrush="{StaticResource BorderBrush}" 
+                    BorderThickness="1" 
+                    CornerRadius="12" 
+                    Padding="32">
+                <StackPanel Spacing="16" HorizontalAlignment="Center">
+                    
+                    <!-- Logo -->
+                    <Border Width="64" Height="64" CornerRadius="12" Background="{StaticResource PrimaryBrush}">
+                        <TextBlock Text="L" FontSize="32" FontWeight="Bold" Foreground="White" 
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    
+                    <!-- App Name and Version -->
+                    <StackPanel Spacing="8" HorizontalAlignment="Center">
+                        <TextBlock Text="LUCID" 
+                                  FontSize="28" 
+                                  FontWeight="Bold" 
+                                  Foreground="{StaticResource TextPrimary}" 
+                                  HorizontalAlignment="Center" />
+                        <TextBlock Text="Versiyon 1.0.0" 
+                                  FontSize="14" 
+                                  Foreground="{StaticResource TextSecondary}" 
+                                  HorizontalAlignment="Center" />
+                    </StackPanel>
+                    
+                    <!-- Description -->
+                    <TextBlock Text="Gelişmiş makro uygulaması" 
+                              FontSize="16" 
+                              Foreground="{StaticResource TextSecondary}" 
+                              HorizontalAlignment="Center" 
+                              TextAlignment="Center" />
+                    
+                </StackPanel>
+            </Border>
+            
+            <!-- Additional Info -->
+            <Border Background="{StaticResource BackgroundSecondary}" 
+                    BorderBrush="{StaticResource BorderBrush}" 
+                    BorderThickness="1" 
+                    CornerRadius="12" 
+                    Padding="24">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Bilgiler" 
+                              FontSize="18" 
+                              FontWeight="SemiBold" 
+                              Foreground="{StaticResource TextPrimary}" />
+                    
+                    <TextBlock Text="© 2024 LUCID. Tüm hakları saklıdır." 
+                              FontSize="14" 
+                              Foreground="{StaticResource TextSecondary}" />
+                </StackPanel>
+            </Border>
+            
+        </StackPanel>
+    </ScrollViewer>
+    
+</UserControl>
