@@ -24,7 +24,7 @@ namespace LUCID.Views
             _mainWindowViewModel = new MainWindowViewModel();
             _mainWindowViewModel.ConnectionStatusChanged += updatestatus;
             _mainWindowViewModel.MessageReceived += updateinfo;
-            this.Loaded += StartServer;
+            //this.Loaded += StartServer;
         }
 
         private async void StartServer(object? sender, RoutedEventArgs e)

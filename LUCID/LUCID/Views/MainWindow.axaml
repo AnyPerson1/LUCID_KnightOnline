@@ -38,7 +38,7 @@
         <!-- Header -->
         <views:HeaderControl Grid.Row="0" />
         <TextBlock Name="infotext" Text="info"> </TextBlock>
-        <TextBlock Name="infotext2" Text="info2" Margin="0,35,0,0"></TextBlock>
+        <TextBlock Name="infotext2" Text="info2" Margin="0,35,0,0"></TextBlock> 
         
         <!-- Main Content -->
         <TabControl Grid.Row="1" Classes="CustomTabs" Background="{StaticResource BackgroundPrimary}">
