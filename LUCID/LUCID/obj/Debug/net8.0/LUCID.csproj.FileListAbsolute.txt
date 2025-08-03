@@ -165,3 +165,4 @@ C:\Users\arda4\Desktop\Github\LUCID_KnightOnline\LUCID\LUCID\obj\Debug\net8.0\LU
 C:\Users\arda4\Desktop\Github\LUCID_KnightOnline\LUCID\LUCID\obj\Debug\net8.0\ref\LUCID.dll
 C:\Users\arda4\Desktop\Github\LUCID_KnightOnline\LUCID\LUCID\obj\Debug\net8.0\LUCID.csproj.Fody.CopyLocal.cache
 C:\Users\arda4\Desktop\Github\LUCID_KnightOnline\LUCID\LUCID\obj\Debug\net8.0\LUCID.csproj.Fody.RuntimeCopyLocal.cache
+C:\Users\arda4\Desktop\Github\LUCID_KnightOnline\LUCID\LUCID\bin\Debug\net8.0\Nlnet.Avalonia.MessageBox.dll

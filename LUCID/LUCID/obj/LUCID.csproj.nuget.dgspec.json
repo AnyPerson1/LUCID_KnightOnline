@@ -82,6 +82,10 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
+            "Nlnet.Avalonia.MessageBox": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
             "ReactiveUI": {
               "target": "Package",
               "version": "[20.4.1, )"

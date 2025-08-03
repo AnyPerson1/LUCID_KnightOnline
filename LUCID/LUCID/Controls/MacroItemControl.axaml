@@ -23,7 +23,8 @@
                                 BorderBrush="#404040"
                                 BorderThickness="1"
                                 Cursor="Hand"
-                                VerticalAlignment="Center">
+                                VerticalAlignment="Center"
+                                Margin="6,0,0,0">
                             <!-- Toggle Circle -->
                             <Ellipse Name="ToggleCircle"
                                      Width="14"
@@ -56,6 +57,9 @@
         <Style Selector="CheckBox.ModernToggle:checked /template/ Border#SwitchBorder">
             <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
             <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Effect">
+                <DropShadowEffect BlurRadius="10" Color="{StaticResource GreenLightColor}" OffsetX="0" OffsetY="0"></DropShadowEffect>
+            </Setter>
         </Style>
         
         <Style Selector="CheckBox.ModernToggle:checked /template/ Ellipse#ToggleCircle">

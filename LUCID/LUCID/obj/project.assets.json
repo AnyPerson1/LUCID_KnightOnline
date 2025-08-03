@@ -513,6 +513,18 @@
           "lib/net5.0/MicroCom.Runtime.dll": {}
         }
       },
+      "Nlnet.Avalonia.MessageBox/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Nlnet.Avalonia.MessageBox.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Nlnet.Avalonia.MessageBox.dll": {}
+        }
+      },
       "ReactiveUI/20.4.1": {
         "type": "package",
         "dependencies": {
@@ -1427,6 +1439,21 @@
         "microcom.runtime.nuspec"
       ]
     },
+    "Nlnet.Avalonia.MessageBox/1.0.2": {
+      "sha512": "NRiLYUIfa7RLmC2lGpfhl36BzIy+fxrwuB+niFJF8K97YEWsAmN5gFErO2pfZYOyTI8fyEj9q+o3EcgM2/dUiw==",
+      "type": "package",
+      "path": "nlnet.avalonia.messagebox/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "acss.png",
+        "lib/net6.0/Nlnet.Avalonia.MessageBox.dll",
+        "nlnet.avalonia.messagebox.1.0.2.nupkg.sha512",
+        "nlnet.avalonia.messagebox.nuspec"
+      ]
+    },
     "ReactiveUI/20.4.1": {
       "sha512": "HMgCWEya3zMfFfrvmYz4Ec87acq+9mo92pLfNZ3GLbUFZeI6TBc2aTPg3UT+1AjPtwfacJJeh7wCwz0y9wabpg==",
       "type": "package",
@@ -1887,6 +1914,7 @@
       "Avalonia.Themes.Fluent >= 11.3.2",
       "Avalonia.Themes.Simple >= 11.3.2",
       "CommunityToolkit.Mvvm >= 8.2.1",
+      "Nlnet.Avalonia.MessageBox >= 1.0.2",
       "ReactiveUI >= 20.4.1",
       "ReactiveUI.Fody >= 19.5.41"
     ]
@@ -1972,6 +2000,10 @@
           "CommunityToolkit.Mvvm": {
             "target": "Package",
             "version": "[8.2.1, )"
+          },
+          "Nlnet.Avalonia.MessageBox": {
+            "target": "Package",
+            "version": "[1.0.2, )"
           },
           "ReactiveUI": {
             "target": "Package",

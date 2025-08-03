@@ -19,11 +19,11 @@
             
             <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Text="LUCID" FontSize="20" FontWeight="Bold" 
-                          Foreground="LawnGreen" VerticalAlignment="Center">
+                           Foreground="LawnGreen" VerticalAlignment="Center">
                     <TextBlock.Effect>
                         <DropShadowEffect 
                             Color="LawnGreen"  
-                            BlurRadius="50"  
+                            BlurRadius="5"  
                             OffsetX="0"         
                             OffsetY="0"   
                             Opacity="1"   

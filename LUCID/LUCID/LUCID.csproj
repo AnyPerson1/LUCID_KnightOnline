@@ -26,6 +26,7 @@
 		  <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
 	  </PackageReference>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+	  <PackageReference Include="Nlnet.Avalonia.MessageBox" Version="1.0.2" />
 	  <PackageReference Include="ReactiveUI" Version="20.4.1" />
 	  <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
   </ItemGroup>
