@@ -14,4 +14,5 @@ public partial class MacroItemViewModel : ReactiveObject
     [Reactive] public string macroHotkey { get; set; } = "Null";
     
     public Tab macroTab { get; set; }
+    public string executionCommand { get; set; } = "Sample";
 }

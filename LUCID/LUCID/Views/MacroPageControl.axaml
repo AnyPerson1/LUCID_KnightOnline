@@ -12,7 +12,7 @@
                 <TabItem Header="Kalkan Macro" IsSelected="True">
                     <ScrollViewer Padding="20,12,20,20">
                         <StackPanel Name="KalkanMacro" Spacing="0">
-                            <controls:MacroItemControl/>
+                            
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>

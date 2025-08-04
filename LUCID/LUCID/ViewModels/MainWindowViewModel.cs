@@ -91,8 +91,7 @@ namespace LUCID.ViewModels
                 }
 
                 InvokeConnectionStatusChanged("Named Pipe Server başlatılıyor...");
-                
-                // Birkaç deneme yap, eğer pipe busy ise
+
                 for (int attempt = 1; attempt <= 5; attempt++)
                 {
                     try
@@ -101,12 +100,12 @@ namespace LUCID.ViewModels
                         
                         _pipeServer = new NamedPipeServerStream(
                             PipeName,
-                            PipeDirection.InOut,
-                            NamedPipeServerStream.MaxAllowedServerInstances, // Sınırsız instance
+                            PipeDirection.Out,
+                            1,
                             PipeTransmissionMode.Byte,
                             PipeOptions.Asynchronous,
-                            4096, // inBufferSize
-                            4096  // outBufferSize
+                            512, 
+                            0     
                         );
 
                         _isServerRunning = true;
@@ -122,7 +121,6 @@ namespace LUCID.ViewModels
                         {
                             InvokeConnectionStatusChanged("Maksimum deneme sayısına ulaşıldı. Pipe temizleniyor...");
                             
-                            // System-wide pipe cleanup attempt
                             await CleanupSystemPipes();
                             throw;
                         }
@@ -138,7 +136,6 @@ namespace LUCID.ViewModels
                 
                 if (_isServerRunning && _pipeServer != null)
                 {
-                    // Client connection'ları dinlemeye başla
                     _ = Task.Run(() => ListenForClientsAsync(_serverCancellationToken.Token));
                 }
             }
@@ -146,8 +143,6 @@ namespace LUCID.ViewModels
             {
                 InvokeConnectionStatusChanged($"Server başlatma kritik hatası: {ex.Message}");
                 _isServerRunning = false;
-                
-                // Cleanup
                 try
                 {
                     _pipeServer?.Dispose();
@@ -162,14 +157,9 @@ namespace LUCID.ViewModels
             try
             {
                 InvokeConnectionStatusChanged("Sistem pipe'larını temizlemeye çalışılıyor...");
-                
-                // Kısa bir bekleme ile sistem pipe'ların temizlenmesini bekle
                 await Task.Delay(2000);
-                
-                // Windows pipe system'ının reset olması için
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                
                 InvokeConnectionStatusChanged("Pipe cleanup tamamlandı.");
             }
             catch (Exception ex)
@@ -192,21 +182,13 @@ namespace LUCID.ViewModels
                     {
                         _isClientConnected = true;
                         InvokeConnectionStatusChanged("Client bağlandı!");
-                        
-                        // Client ile iletişim başlat
                         await HandleClientCommunicationAsync(cancellationToken);
-                        
-                        // Client disconnected
                         _isClientConnected = false;
                         InvokeConnectionStatusChanged("Client bağlantısı kesildi.");
-                        
-                        // Disconnect ve yeni server oluştur
                         _pipeServer.Disconnect();
                         
-                        // Yeni client için hazırlan (eğer server hala çalışıyorsa)
                         if (_isServerRunning && !cancellationToken.IsCancellationRequested)
                         {
-                            // Yeni server instance oluştur
                             _pipeServer.Dispose();
                             _pipeServer = new NamedPipeServerStream(
                                 PipeName,
@@ -225,7 +207,7 @@ namespace LUCID.ViewModels
                 catch (Exception ex)
                 {
                     InvokeConnectionStatusChanged($"Client dinleme hatası: {ex.Message}");
-                    await Task.Delay(1000, cancellationToken); // Hata durumunda biraz bekle
+                    await Task.Delay(1000, cancellationToken);
                 }
             }
         }
@@ -234,25 +216,18 @@ namespace LUCID.ViewModels
         {
             try
             {
+                await SendMessageToClientAsync("Access granted. Welcome to the LUCID central system.");
                 while (_pipeServer.IsConnected && !cancellationToken.IsCancellationRequested)
                 {
-                    // Client'tan mesaj oku
                     string receivedMessage = await ReadNullTerminatedStringAsync(cancellationToken);
-                    
                     if (string.IsNullOrEmpty(receivedMessage))
                     {
                         InvokeConnectionStatusChanged("Client boş mesaj gönderdi veya bağlantıyı kesti.");
                         break;
                     }
-
                     InvokeMessageReceived($"Client'tan gelen: {receivedMessage}");
-                    
-                    // Mesaja göre yanıt oluştur
                     string response = ProcessMessage(receivedMessage);
-                    
-                    // Yanıtı gönder
                     await SendMessageAsync(response, cancellationToken);
-                    
                     InvokeConnectionStatusChanged($"Yanıt gönderildi: {response}");
                 }
             }
@@ -280,10 +255,6 @@ namespace LUCID.ViewModels
             {
                 string macroCommand = message.Substring(11);
                 InvokeConnectionStatusChanged($"Makro komutu alındı: {macroCommand}");
-                
-                // Burada makro işleme mantığınızı ekleyebilirsiniz
-                // Örneğin: ExecuteMacro(macroCommand);
-                
                 return $"SERVER_ACK: Macro '{macroCommand}' executed successfully!";
             }
             else if (message == "STATUS")
@@ -299,8 +270,7 @@ namespace LUCID.ViewModels
         private async Task<string> ReadNullTerminatedStringAsync(CancellationToken cancellationToken)
         {
             var result = new StringBuilder();
-            byte[] buffer = new byte[2]; // Unicode char için 2 byte
-            
+            byte[] buffer = new byte[2];
             try
             {
                 while (!cancellationToken.IsCancellationRequested)
@@ -317,7 +287,7 @@ namespace LUCID.ViewModels
                     }
                     else if (bytesRead == 0)
                     {
-                        return null; // Connection closed
+                        return null;
                     }
                 }
             }
@@ -348,8 +318,7 @@ namespace LUCID.ViewModels
                 throw;
             }
         }
-
-        // Client'a mesaj gönderme (UI'dan çağrılabilir)
+        
         public async Task<bool> SendMessageToClientAsync(string message)
         {
             if (!_isClientConnected || !_pipeServer?.IsConnected == true)
@@ -378,13 +347,10 @@ namespace LUCID.ViewModels
             
             try
             {
-                // Cancellation token'ı iptal et
                 _serverCancellationToken?.Cancel();
                 
-                // Biraz bekle ki running task'lar durabilsin
                 await Task.Delay(500);
                 
-                // Pipe connection'ı kapat
                 if (_pipeServer != null)
                 {
                     try
@@ -412,7 +378,6 @@ namespace LUCID.ViewModels
                     }
                 }
                 
-                // Cancellation token'ı dispose et
                 try
                 {
                     _serverCancellationToken?.Dispose();
@@ -422,7 +387,6 @@ namespace LUCID.ViewModels
                 
                 _isClientConnected = false;
                 
-                // Son temizlik
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 
