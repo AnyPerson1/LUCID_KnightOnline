@@ -22,7 +22,6 @@ namespace LUCID.ViewModels
         private volatile bool _isClientConnected = false;
         private CancellationTokenSource _serverCancellationToken;
         
-        public event Action<string> MessageReceived;
         public event Action<string> ConnectionStatusChanged;
 
         private void InvokeConnectionStatusChanged(string message)
@@ -32,20 +31,6 @@ namespace LUCID.ViewModels
             try
             {
                 Dispatcher.UIThread.InvokeAsync(() => ConnectionStatusChanged?.Invoke(message));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[UI ERROR] {DateTime.Now:HH:mm:ss.fff} - UI Event hatası: {ex.Message}");
-            }
-        }
-
-        private void InvokeMessageReceived(string message)
-        {
-            Console.WriteLine($"[PIPE MESSAGE] {DateTime.Now:HH:mm:ss.fff} - {message}");
-            
-            try
-            {
-                Dispatcher.UIThread.InvokeAsync(() => MessageReceived?.Invoke(message));
             }
             catch (Exception ex)
             {
@@ -100,7 +85,7 @@ namespace LUCID.ViewModels
                         
                         _pipeServer = new NamedPipeServerStream(
                             PipeName,
-                            PipeDirection.Out,
+                            PipeDirection.Out,  // Sadece gönderme için
                             1,
                             PipeTransmissionMode.Byte,
                             PipeOptions.Asynchronous,
@@ -182,7 +167,13 @@ namespace LUCID.ViewModels
                     {
                         _isClientConnected = true;
                         InvokeConnectionStatusChanged("Client bağlandı!");
-                        await HandleClientCommunicationAsync(cancellationToken);
+                        
+                        // Hoş geldin mesajı gönder
+                        await SendMessageToClientAsync("Access granted. Welcome to the LUCID central system.");
+                        
+                        // Client bağlantısını sürdür (sadece gönderim için)
+                        await MaintainClientConnectionAsync(cancellationToken);
+                        
                         _isClientConnected = false;
                         InvokeConnectionStatusChanged("Client bağlantısı kesildi.");
                         _pipeServer.Disconnect();
@@ -192,7 +183,7 @@ namespace LUCID.ViewModels
                             _pipeServer.Dispose();
                             _pipeServer = new NamedPipeServerStream(
                                 PipeName,
-                                PipeDirection.InOut,
+                                PipeDirection.Out,  // Sadece gönderme için
                                 1,
                                 PipeTransmissionMode.Byte,
                                 PipeOptions.Asynchronous);
@@ -212,96 +203,32 @@ namespace LUCID.ViewModels
             }
         }
 
-        private async Task HandleClientCommunicationAsync(CancellationToken cancellationToken)
+        private async Task MaintainClientConnectionAsync(CancellationToken cancellationToken)
         {
             try
             {
-                await SendMessageToClientAsync("Access granted. Welcome to the LUCID central system.");
+                // Client bağlantısını sürdür, sadece gönderim için hazır bekle
                 while (_pipeServer.IsConnected && !cancellationToken.IsCancellationRequested)
                 {
-                    string receivedMessage = await ReadNullTerminatedStringAsync(cancellationToken);
-                    if (string.IsNullOrEmpty(receivedMessage))
+                    // Bağlantı durumunu kontrol et
+                    await Task.Delay(1000, cancellationToken);
+                    
+                    // Pipe'ın hala bağlı olup olmadığını kontrol et
+                    if (!_pipeServer.IsConnected)
                     {
-                        InvokeConnectionStatusChanged("Client boş mesaj gönderdi veya bağlantıyı kesti.");
+                        InvokeConnectionStatusChanged("Client bağlantısı kesildi.");
                         break;
                     }
-                    InvokeMessageReceived($"Client'tan gelen: {receivedMessage}");
-                    string response = ProcessMessage(receivedMessage);
-                    await SendMessageAsync(response, cancellationToken);
-                    InvokeConnectionStatusChanged($"Yanıt gönderildi: {response}");
                 }
             }
             catch (OperationCanceledException)
             {
-                InvokeConnectionStatusChanged("Client iletişimi iptal edildi.");
-            }
-            catch (IOException ex)
-            {
-                InvokeConnectionStatusChanged($"Client iletişim hatası: {ex.Message}");
+                InvokeConnectionStatusChanged("Client bağlantısı iptal edildi.");
             }
             catch (Exception ex)
             {
-                InvokeConnectionStatusChanged($"Client iletişim genel hatası: {ex.Message}");
+                InvokeConnectionStatusChanged($"Client bağlantı sürdürme hatası: {ex.Message}");
             }
-        }
-
-        private string ProcessMessage(string message)
-        {
-            if (message == "HELLO")
-            {
-                return "SERVER_ACK: Hello from C# Server!";
-            }
-            else if (message.StartsWith("MACRO_EXEC:"))
-            {
-                string macroCommand = message.Substring(11);
-                InvokeConnectionStatusChanged($"Makro komutu alındı: {macroCommand}");
-                return $"SERVER_ACK: Macro '{macroCommand}' executed successfully!";
-            }
-            else if (message == "STATUS")
-            {
-                return $"SERVER_ACK: Server running, Client connected: {_isClientConnected}";
-            }
-            else
-            {
-                return "SERVER_ACK: Unknown command. Available: HELLO, MACRO_EXEC:command, STATUS";
-            }
-        }
-
-        private async Task<string> ReadNullTerminatedStringAsync(CancellationToken cancellationToken)
-        {
-            var result = new StringBuilder();
-            byte[] buffer = new byte[2];
-            try
-            {
-                while (!cancellationToken.IsCancellationRequested)
-                {
-                    int bytesRead = await _pipeServer.ReadAsync(buffer, 0, 2, cancellationToken);
-                    if (bytesRead == 2)
-                    {
-                        char c = Encoding.Unicode.GetChars(buffer)[0];
-                        if (c == '\0')
-                        {
-                            return result.ToString();
-                        }
-                        result.Append(c);
-                    }
-                    else if (bytesRead == 0)
-                    {
-                        return null;
-                    }
-                }
-            }
-            catch (OperationCanceledException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                InvokeConnectionStatusChanged($"Mesaj okuma hatası: {ex.Message}");
-                throw;
-            }
-            
-            return null;
         }
         
         private async Task SendMessageAsync(string message, CancellationToken cancellationToken)

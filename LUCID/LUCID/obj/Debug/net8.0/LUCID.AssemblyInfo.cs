@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LUCID")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92de5b0d6550d29e9464c2641e76e85a1091e7d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23b5579f660ecd70ac20a1494b6e26be0988c59e")]
 [assembly: System.Reflection.AssemblyProductAttribute("LUCID")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LUCID")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -23,7 +23,6 @@ namespace LUCID.Views
             _addMacroToList += _macroPageControl.AddMacroToList;
             _mainWindowViewModel = new MainWindowViewModel();
             _mainWindowViewModel.ConnectionStatusChanged += updatestatus;
-            _mainWindowViewModel.MessageReceived += updateinfo;
             this.Loaded += StartServer;
         }
 
