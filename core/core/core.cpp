@@ -1,5 +1,6 @@
 ﻿#include <windows.h>
 #include <iostream>
+#include <optional>
 #include <string>
 #include <fcntl.h>
 #include <io.h>
@@ -12,7 +13,7 @@
 
 #define VERSION L"1.0.1"
 #define PIPE_NAME L"\\\\.\\pipe\\LUCID_MacroPipe"
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 256 // current minimum safe size
 
 const std::wstring green = L"\033[32m";
 const std::wstring red = L"\033[31m";
@@ -20,6 +21,11 @@ const std::wstring yellow = L"\033[33m";
 const std::wstring cyan = L"\033[36m";
 const std::wstring white = L"\033[0m";
 const std::wstring bold = L"\033[1m";
+
+HANDLE hPipe;
+
+
+
 
 void delay(int ms) {
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
@@ -56,8 +62,8 @@ void ErrorExit(const wchar_t* lpszFunction) {
     std::wcerr << red << bold << L"[FATAL_ERROR] " << lpszFunction << L" process failed with code " << dwError << L" (0x" << std::hex << dwError << L")" << white << std::endl;
 }
 
-std::wstring ReadNullTerminatedString(HANDLE hPipe) {
-    std::wstring result;
+std::string ReadNullTerminatedString(HANDLE hPipe) {
+    std::string result;
     wchar_t buffer;
     DWORD bytesRead;
 
@@ -70,7 +76,7 @@ std::wstring ReadNullTerminatedString(HANDLE hPipe) {
             else if (GetLastError() != ERROR_SUCCESS) {
                 ErrorExit(L"ReadFile");
             }
-            return L"";
+            return "";
         }
 
         if (buffer == L'\0') {
@@ -81,7 +87,6 @@ std::wstring ReadNullTerminatedString(HANDLE hPipe) {
 }
 
 HANDLE ConnectToServer() {
-    HANDLE hPipe;
 
     printMessageWithDelay(L"INITIATING > P2P Connection Protocol...", cyan, 20);
     delay(500);
@@ -158,17 +163,13 @@ void printIntro() {
 )" << white << std::endl;
 }
 
-int main() {
 
+int main() {
     _setmode(_fileno(stdout), _O_WTEXT);
 
     _setmode(_fileno(stdin), _O_TEXT);
 
     std::locale::global(std::locale(""));
-
-    message::processMessage("MESSAGE:You think you can hide from me ? Nah you can`t");
-
-
     printIntro();
 
     printMessageWithDelay(L"BOOT SEQUENCE > LUCID MacroCore v" VERSION L" initiated.", green, 5);
@@ -176,7 +177,7 @@ int main() {
     printMessageWithDelay(L"INFO > CURRENT PIPELINE : " PIPE_NAME L"\n\n", green, 5);
     printMessageWithDelay(L"SYSTEM STATUS > All core subroutines operational. \n\n", green, 5);
 
-    HANDLE hPipe = ConnectToServer();
+    hPipe = ConnectToServer();
     if (hPipe == INVALID_HANDLE_VALUE) {
         printMessageWithDelay(L"CRITICAL ERROR > Server connection failure detected.", red, 5);
         delay(1000);
@@ -187,7 +188,7 @@ int main() {
 
     while (true) {
         animateWaitingMessage(L"Awaiting data transmission from server", cyan, 5);
-        std::wstring response = ReadNullTerminatedString(hPipe);
+        std::string response = ReadNullTerminatedString(hPipe);
 
         if (response.empty()) {
             printMessageWithDelay(L"FATAL > Server connection lost.", red, 5);
@@ -197,7 +198,8 @@ int main() {
             break;
         }
 
-        std::wcout << green << L"COMMAND_RECEIVED > " << white << response << std::endl;
+        std::wcout << green << L"COMMAND_RECEIVED > " << white << response.c_str() << std::endl;
+        message::processMessage(response);
     }
 
     CloseHandle(hPipe);

@@ -29,8 +29,6 @@ namespace LUCID.Views
         private async void StartServer(object? sender, RoutedEventArgs e)
         {
             sw.Start();
-            
-            // Named Pipe Server'ı başlat
             await _mainWindowViewModel.CreatePipeServer();
             
             sw.Stop();
@@ -45,17 +43,12 @@ namespace LUCID.Views
         public void updatestatus(string message)
         {
             infotext2.Text += $"\n{DateTime.Now:HH:mm:ss} - {message}";
-            
-            // Scroll to bottom (optional)
-            // You might need to implement scrolling logic here
         }
-
-        // Window kapatılırken server'ı durdur
+        
         protected override async void OnClosing(WindowClosingEventArgs e)
         {
             if (_mainWindowViewModel != null)
             {
-                // UI'ı hemen kapatma, server'ın düzgün durmasını bekle
                 e.Cancel = true;
                 
                 infotext.Text = "Uygulama kapatılıyor, server durduruluyor...";
@@ -70,26 +63,14 @@ namespace LUCID.Views
                     Console.WriteLine($"Shutdown error: {ex.Message}");
                 }
                 
-                // Şimdi gerçekten kapat
                 e.Cancel = false;
                 base.OnClosing(e);
                 
-                // Uygulamayı zorla kapat
                 Environment.Exit(0);
             }
             else
             {
                 base.OnClosing(e);
-            }
-        }
-
-        // Test için server'dan client'a mesaj gönderme
-        private async void SendTestMessage(object? sender, RoutedEventArgs e)
-        {
-            if (_mainWindowViewModel != null)
-            {
-                bool success = await _mainWindowViewModel.SendMessageToClientAsync("TEST_MESSAGE_FROM_SERVER");
-                infotext.Text = success ? "Test message sent!" : "Failed to send test message.";
             }
         }
     }

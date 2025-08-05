@@ -29,5 +29,8 @@
     <ClInclude Include="messageHandler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="macro.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

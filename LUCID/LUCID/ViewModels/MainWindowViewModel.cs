@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using LUCID.Controls;
 using LUCID.Models;
@@ -15,7 +16,21 @@ namespace LUCID.ViewModels
 {
     public partial class MainWindowViewModel : ReactiveObject
     {
-        private const string PipeName = "LUCID_MacroPipe";
+        private const string PIPE_NAME = "LUCID_MacroPipe";
+        private const int MAX_RETRY_ATTEMPTS = 5;
+        private const int RETRY_DELAY_MS = 1000;
+        private const int CONNECTION_CHECK_INTERVAL_MS = 1000;
+        private const int SHUTDOWN_DELAY_MS = 500;
+
+        private Dictionary<M_COMMAND, string> commands = new Dictionary<M_COMMAND, string>
+        {
+            { M_COMMAND.ACTIVATE, "MACRO_ACTIVATE:" },
+            { M_COMMAND.DEACTIVATE, "MACRO_DEACTIVATE:" },
+            { M_COMMAND.INFO, "MACRO_INFO:" },
+            { M_COMMAND.MESSAGE, "MESSAGE:" },
+            { M_COMMAND.PANIC, "PANIC:" }
+        };
+        
         private NamedPipeServerStream _pipeServer;
         private readonly SemaphoreSlim _serverSemaphore = new SemaphoreSlim(1, 1);
         private volatile bool _isServerRunning = false;
@@ -24,17 +39,20 @@ namespace LUCID.ViewModels
         
         public event Action<string> ConnectionStatusChanged;
 
-        private void InvokeConnectionStatusChanged(string message)
+        private void LogStatus(string status, string message)
         {
-            Console.WriteLine($"[PIPE SERVER] {DateTime.Now:HH:mm:ss.fff} - {message}");
+            string timestamp = DateTime.Now.ToString("HH:mm:ss.fff");
+            string logMessage = $"[{status}] {timestamp} - {message}";
+            
+            Console.WriteLine(logMessage);
             
             try
             {
-                Dispatcher.UIThread.InvokeAsync(() => ConnectionStatusChanged?.Invoke(message));
+                Dispatcher.UIThread.InvokeAsync(() => ConnectionStatusChanged?.Invoke(logMessage));
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[UI ERROR] {DateTime.Now:HH:mm:ss.fff} - UI Event hatası: {ex.Message}");
+                Console.WriteLine($"[UI_ERROR] {timestamp} - Event dispatch failed: {ex.Message}");
             }
         }
 
@@ -45,7 +63,7 @@ namespace LUCID.ViewModels
             {
                 if (_isServerRunning)
                 {
-                    InvokeConnectionStatusChanged("Server zaten çalışıyor.");
+                    LogStatus("WARNING", "Server already running");
                     return;
                 }
 
@@ -62,30 +80,18 @@ namespace LUCID.ViewModels
         {
             try
             {
-                // Önceki pipe instance'ını temizle
-                if (_pipeServer != null)
+                await CleanupPreviousInstance();
+                LogStatus("INIT", "Starting Named Pipe Server...");
+
+                for (int attempt = 1; attempt <= MAX_RETRY_ATTEMPTS; attempt++)
                 {
                     try
                     {
-                        if (_pipeServer.IsConnected)
-                            _pipeServer.Disconnect();
-                        _pipeServer.Dispose();
-                    }
-                    catch { }
-                    _pipeServer = null;
-                }
-
-                InvokeConnectionStatusChanged("Named Pipe Server başlatılıyor...");
-
-                for (int attempt = 1; attempt <= 5; attempt++)
-                {
-                    try
-                    {
-                        InvokeConnectionStatusChanged($"Server oluşturma denemesi {attempt}/5");
+                        LogStatus("ATTEMPT", $"Server creation attempt {attempt}/{MAX_RETRY_ATTEMPTS}");
                         
                         _pipeServer = new NamedPipeServerStream(
-                            PipeName,
-                            PipeDirection.Out,  // Sadece gönderme için
+                            PIPE_NAME,
+                            PipeDirection.Out,
                             1,
                             PipeTransmissionMode.Byte,
                             PipeOptions.Asynchronous,
@@ -94,28 +100,27 @@ namespace LUCID.ViewModels
                         );
 
                         _isServerRunning = true;
-                        InvokeConnectionStatusChanged($"Server başarıyla oluşturuldu: {PipeName}");
+                        LogStatus("SUCCESS", $"Server created successfully: {PIPE_NAME}");
                         break;
                     }
                     catch (IOException ex) when (ex.Message.Contains("busy") || ex.Message.Contains("meşgul"))
                     {
-                        InvokeConnectionStatusChanged($"Pipe meşgul (deneme {attempt}/5), 1 saniye bekleniyor...");
-                        await Task.Delay(1000);
+                        LogStatus("BUSY", $"Pipe busy (attempt {attempt}/{MAX_RETRY_ATTEMPTS}), waiting {RETRY_DELAY_MS}ms...");
+                        await Task.Delay(RETRY_DELAY_MS);
                         
-                        if (attempt == 5)
+                        if (attempt == MAX_RETRY_ATTEMPTS)
                         {
-                            InvokeConnectionStatusChanged("Maksimum deneme sayısına ulaşıldı. Pipe temizleniyor...");
-                            
+                            LogStatus("TIMEOUT", "Maximum retry attempts reached. Cleaning system pipes...");
                             await CleanupSystemPipes();
                             throw;
                         }
                     }
                     catch (Exception ex)
                     {
-                        InvokeConnectionStatusChanged($"Server oluşturma hatası (deneme {attempt}): {ex.Message}");
-                        if (attempt == 5)
+                        LogStatus("ERROR", $"Server creation failed (attempt {attempt}): {ex.Message}");
+                        if (attempt == MAX_RETRY_ATTEMPTS)
                             throw;
-                        await Task.Delay(1000);
+                        await Task.Delay(RETRY_DELAY_MS);
                     }
                 }
                 
@@ -126,14 +131,24 @@ namespace LUCID.ViewModels
             }
             catch (Exception ex)
             {
-                InvokeConnectionStatusChanged($"Server başlatma kritik hatası: {ex.Message}");
+                LogStatus("CRITICAL_ERROR", $"Server startup failed: {ex.Message}");
                 _isServerRunning = false;
+                await DisposeServerInstance();
+            }
+        }
+
+        private async Task CleanupPreviousInstance()
+        {
+            if (_pipeServer != null)
+            {
                 try
                 {
-                    _pipeServer?.Dispose();
-                    _pipeServer = null;
+                    if (_pipeServer.IsConnected)
+                        _pipeServer.Disconnect();
+                    _pipeServer.Dispose();
                 }
                 catch { }
+                _pipeServer = null;
             }
         }
 
@@ -141,15 +156,15 @@ namespace LUCID.ViewModels
         {
             try
             {
-                InvokeConnectionStatusChanged("Sistem pipe'larını temizlemeye çalışılıyor...");
+                LogStatus("CLEANUP", "Cleaning system pipes...");
                 await Task.Delay(2000);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                InvokeConnectionStatusChanged("Pipe cleanup tamamlandı.");
+                LogStatus("CLEANUP_SUCCESS", "Pipe cleanup completed");
             }
             catch (Exception ex)
             {
-                InvokeConnectionStatusChanged($"Pipe cleanup hatası: {ex.Message}");
+                LogStatus("CLEANUP_ERROR", $"Pipe cleanup failed: {ex.Message}");
             }
         }
 
@@ -159,75 +174,76 @@ namespace LUCID.ViewModels
             {
                 try
                 {
-                    InvokeConnectionStatusChanged("Client bağlantısı bekleniyor...");
+                    LogStatus("WAITING", "Awaiting client connection...");
                     
                     await _pipeServer.WaitForConnectionAsync(cancellationToken);
                     
                     if (_pipeServer.IsConnected)
                     {
                         _isClientConnected = true;
-                        InvokeConnectionStatusChanged("Client bağlandı!");
+                        LogStatus("CONNECTED", "Client connected successfully!");
                         
-                        // Hoş geldin mesajı gönder
-                        await SendMessageToClientAsync("Access granted. Welcome to the LUCID central system.");
-                        
-                        // Client bağlantısını sürdür (sadece gönderim için)
+                        await SendMessageToClientAsync("MESSAGE:Access granted. Welcome to LUCID central system.");
                         await MaintainClientConnectionAsync(cancellationToken);
                         
                         _isClientConnected = false;
-                        InvokeConnectionStatusChanged("Client bağlantısı kesildi.");
+                        LogStatus("DISCONNECTED", "Client connection terminated");
                         _pipeServer.Disconnect();
                         
                         if (_isServerRunning && !cancellationToken.IsCancellationRequested)
                         {
-                            _pipeServer.Dispose();
-                            _pipeServer = new NamedPipeServerStream(
-                                PipeName,
-                                PipeDirection.Out,  // Sadece gönderme için
-                                1,
-                                PipeTransmissionMode.Byte,
-                                PipeOptions.Asynchronous);
+                            await CreateNewServerInstance();
                         }
                     }
                 }
                 catch (OperationCanceledException)
                 {
-                    InvokeConnectionStatusChanged("Server durduruldu.");
+                    LogStatus("SHUTDOWN", "Server stopped by cancellation");
                     break;
                 }
                 catch (Exception ex)
                 {
-                    InvokeConnectionStatusChanged($"Client dinleme hatası: {ex.Message}");
-                    await Task.Delay(1000, cancellationToken);
+                    LogStatus("LISTEN_ERROR", $"Client listening error: {ex.Message}");
+                    await Task.Delay(RETRY_DELAY_MS, cancellationToken);
                 }
             }
+        }
+
+        private async Task CreateNewServerInstance()
+        {
+            _pipeServer.Dispose();
+            _pipeServer = new NamedPipeServerStream(
+                PIPE_NAME,
+                PipeDirection.Out,
+                1,
+                PipeTransmissionMode.Byte,
+                PipeOptions.Asynchronous);
+            
+            LogStatus("RESET", "New server instance created");
         }
 
         private async Task MaintainClientConnectionAsync(CancellationToken cancellationToken)
         {
             try
             {
-                // Client bağlantısını sürdür, sadece gönderim için hazır bekle
                 while (_pipeServer.IsConnected && !cancellationToken.IsCancellationRequested)
                 {
-                    // Bağlantı durumunu kontrol et
-                    await Task.Delay(1000, cancellationToken);
+                    await Task.Delay(CONNECTION_CHECK_INTERVAL_MS, cancellationToken);
                     
-                    // Pipe'ın hala bağlı olup olmadığını kontrol et
                     if (!_pipeServer.IsConnected)
                     {
-                        InvokeConnectionStatusChanged("Client bağlantısı kesildi.");
+                        LogStatus("CONNECTION_LOST", "Client connection lost");
                         break;
                     }
                 }
             }
             catch (OperationCanceledException)
             {
-                InvokeConnectionStatusChanged("Client bağlantısı iptal edildi.");
+                LogStatus("CONNECTION_CANCELLED", "Client connection cancelled");
             }
             catch (Exception ex)
             {
-                InvokeConnectionStatusChanged($"Client bağlantı sürdürme hatası: {ex.Message}");
+                LogStatus("CONNECTION_ERROR", $"Connection maintenance error: {ex.Message}");
             }
         }
         
@@ -241,7 +257,7 @@ namespace LUCID.ViewModels
             }
             catch (Exception ex)
             {
-                InvokeConnectionStatusChanged($"Mesaj gönderme hatası: {ex.Message}");
+                LogStatus("SEND_ERROR", $"Message send failed: {ex.Message}");
                 throw;
             }
         }
@@ -250,79 +266,94 @@ namespace LUCID.ViewModels
         {
             if (!_isClientConnected || !_pipeServer?.IsConnected == true)
             {
-                InvokeConnectionStatusChanged("Client bağlı değil, mesaj gönderilemez.");
+                LogStatus("SEND_FAILED", "Client not connected, message cannot be sent");
                 return false;
             }
 
             try
             {
                 await SendMessageAsync(message, _serverCancellationToken.Token);
-                InvokeConnectionStatusChanged($"Client'a mesaj gönderildi: {message}");
+                LogStatus("MESSAGE_SENT", $"Message sent to client: {message}");
                 return true;
             }
             catch (Exception ex)
             {
-                InvokeConnectionStatusChanged($"Client'a mesaj gönderme hatası: {ex.Message}");
+                LogStatus("MESSAGE_ERROR", $"Client message send error: {ex.Message}");
                 return false;
             }
         }
         
         public async Task StopServerAsync()
         {
-            InvokeConnectionStatusChanged("Server durduruluyor...");
+            LogStatus("SHUTDOWN_INIT", "Initiating server shutdown...");
             _isServerRunning = false;
             
             try
             {
                 _serverCancellationToken?.Cancel();
+                await Task.Delay(SHUTDOWN_DELAY_MS);
                 
-                await Task.Delay(500);
-                
-                if (_pipeServer != null)
-                {
-                    try
-                    {
-                        if (_pipeServer.IsConnected)
-                        {
-                            InvokeConnectionStatusChanged("Client bağlantısı kesiliyor...");
-                            _pipeServer.Disconnect();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        InvokeConnectionStatusChanged($"Pipe disconnect hatası: {ex.Message}");
-                    }
-                    
-                    try
-                    {
-                        _pipeServer.Dispose();
-                        _pipeServer = null;
-                        InvokeConnectionStatusChanged("Pipe kaynakları temizlendi.");
-                    }
-                    catch (Exception ex)
-                    {
-                        InvokeConnectionStatusChanged($"Pipe dispose hatası: {ex.Message}");
-                    }
-                }
-                
-                try
-                {
-                    _serverCancellationToken?.Dispose();
-                    _serverCancellationToken = null;
-                }
-                catch { }
+                await DisconnectClient();
+                await DisposeServerInstance();
+                await DisposeResources();
                 
                 _isClientConnected = false;
                 
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 
-                InvokeConnectionStatusChanged("Server başarıyla durduruldu ve tüm kaynaklar temizlendi.");
+                LogStatus("SHUTDOWN_SUCCESS", "Server stopped successfully. All resources cleaned");
             }
             catch (Exception ex)
             {
-                InvokeConnectionStatusChanged($"Server durdurma hatası: {ex.Message}");
+                LogStatus("SHUTDOWN_ERROR", $"Server shutdown error: {ex.Message}");
             }
+        }
+
+        private async Task DisconnectClient()
+        {
+            if (_pipeServer != null)
+            {
+                try
+                {
+                    if (_pipeServer.IsConnected)
+                    {
+                        LogStatus("DISCONNECT", "Disconnecting client...");
+                        _pipeServer.Disconnect();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogStatus("DISCONNECT_ERROR", $"Client disconnect error: {ex.Message}");
+                }
+            }
+        }
+
+        private async Task DisposeServerInstance()
+        {
+            if (_pipeServer != null)
+            {
+                try
+                {
+                    _pipeServer.Dispose();
+                    _pipeServer = null;
+                    LogStatus("DISPOSED", "Pipe resources disposed");
+                }
+                catch (Exception ex)
+                {
+                    LogStatus("DISPOSE_ERROR", $"Pipe dispose error: {ex.Message}");
+                }
+            }
+        }
+
+        private async Task DisposeResources()
+        {
+            try
+            {
+                _serverCancellationToken?.Dispose();
+                _serverCancellationToken = null;
+            }
+            catch { }
         }
         
         public void StopServer()

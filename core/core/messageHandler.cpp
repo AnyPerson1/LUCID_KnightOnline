@@ -27,6 +27,7 @@ void message::processMessage(std::string message)
 		}
 	}
 	
+	std::wcout << green;
 	std::wcout << "INFO > MESSAGE PROCESSING SUCCESS";
 	classificate(sprt);
 	
@@ -53,7 +54,7 @@ void message::classificate(const std::vector<std::string> &data)
 	if (header == "PANIC")
 	{
 		while (1)
-		MessageBoxA(NULL, "Panic mode activated. Starting memory corruption.", "System Error", MB_ICONERROR | MB_OK);
+		MessageBoxA(NULL, "Panic mode activated. Memory corruption started.", "System Error", MB_ICONERROR | MB_OK);
 	}
 	if (header == "MESSAGE")
 	{
@@ -65,4 +66,9 @@ INCOMING MESSAGE:
 
 		MessageBoxA(NULL, fullMsg.c_str(), "System", MB_OK | MB_ICONINFORMATION);
 	}
+}
+
+void message::logError(std::string header, std::string message)
+{
+	std::wcout << "test";
 }
