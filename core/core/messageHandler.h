@@ -12,5 +12,5 @@ public:
 private:
 	static void classificate(const std::vector<std::string> &data);
 public:
-	static void logError(std::string header, std::string message);
+	static void logMessage(std::string header, std::string message, std::wstring color);
 };

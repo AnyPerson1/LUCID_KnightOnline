@@ -68,7 +68,8 @@ INCOMING MESSAGE:
 	}
 }
 
-void message::logError(std::string header, std::string message)
+void message::logMessage(std::string header, std::string message, std::wstring color)
 {
-	std::wcout << "test";
+	std::wcout << color;
+	std::wcout << header.c_str() << " > " << message.c_str() << "\n";
 }

@@ -4,13 +4,21 @@
 #include <optional>
 #include <functional>
 #include <sstream>
-#include "macro.h";
+#include "macro.h"
+#include "messageHandler.h"
 
 #define ID_HEADER "ID"
-#define MS_HEADER "ID"
-#define CP_HEADER "ID"
-#define SSCAN_AREA_HEADER "ID"
-#define KEY_HEADER "ID"
+#define MS_HEADER "MS"
+#define CP_HEADER "CLICK_POINT"
+#define SSCAN_AREA_HEADER "SCAN_RECT"
+#define KEY_HEADER "HOTKEY"
+
+const std::wstring green = L"\033[32m";
+const std::wstring red = L"\033[31m";
+const std::wstring yellow = L"\033[33m";
+const std::wstring cyan = L"\033[36m";
+const std::wstring white = L"\033[0m";
+const std::wstring bold = L"\033[1m";
 
 struct Point {
 public:
@@ -20,7 +28,7 @@ public:
 
 struct Rectangle {
 public:
-	int x1, x2;
+	int x, y;
 	int width, height;
 };
 
@@ -35,14 +43,13 @@ public:
 
 std::vector<m_item> global_macros;
 
-void import_macro(std::vector<std::string> parts) // MACRO ITEM RECEIVE SAMPLE : ID:macroHeader:MS:macroSpeed:CLICK_POINT:clickPosition.x,clickPosition.y:SCAN_RECT:scanArea.x,scanArea.y,scanArea.width,scanArea.height:HOTKEY:macroHotkey
+void macro::import_macro(std::vector<std::string> parts) // MACRO ITEM RECEIVE SAMPLE : ID:macroHeader:MS:macroSpeed:CLICK_POINT:clickPosition.x,clickPosition.y:SCAN_RECT:scanArea.x,scanArea.y,scanArea.width,scanArea.height:HOTKEY:macroHotkey
 {
 	m_item macro_item;
 	std::string tmp_value;
-	std::function<std::string(int)> getValue = [&parts](int current_index) {
-		std::string result;
-		result = parts.at(current_index + 1);
-		return result;
+	bool aborted = false;
+	std::function<std::string(int)> getValue = [&parts](int i) {
+		return parts[i + 1];
 	};
 
 	for (int i = 0; i < parts.size(); i++)
@@ -72,22 +79,69 @@ void import_macro(std::vector<std::string> parts) // MACRO ITEM RECEIVE SAMPLE :
 					sprt.push_back(tmp_i);
 				}
 			}
-			Point cp;
-			try
 			{
-				cp.x = stoi(sprt.at(0));
-				cp.y = stoi(sprt.at(1));
+				Point cp;
+				try
+				{
+					cp.x = stoi(sprt.at(0));
+					cp.y = stoi(sprt.at(1));
+				}
+				catch (const std::exception&)
+				{
+					message::logMessage("MACRO IMPORT ERROR", "CLICK POINT DATA IS NOT IN CORRECT FORM.",red);
+					message::logMessage("INFO", "IMPORT PROCESS ABORTED.", yellow);
+					aborted = true;
+					break;
+				}
+				macro_item.click_point = cp;
 			}
-			catch (const std::exception&)
+			continue;
+		}
+		if (parts.at(i) == SSCAN_AREA_HEADER)
+		{
+			tmp_value = getValue(i);
+			std::vector<std::string> sprt;
 			{
-				
+				std::stringstream stream(tmp_value);
+				std::string tmp_i;
+
+				while (std::getline(stream, tmp_i, ','))
+				{
+					sprt.push_back(tmp_i);
+				}
 			}
-			cp.x = stoi(sprt.at(0));
-			cp.y = stoi(sprt.at(1));
-			macro_item.click_point = cp;
+			{
+				Rectangle rect;
+				try
+				{
+					rect.x = stoi(sprt.at(0));
+					rect.y = stoi(sprt.at(1));
+					rect.width = stoi(sprt.at(2));
+					rect.height = stoi(sprt.at(3));
+				}
+				catch (const std::exception&)
+				{
+					message::logMessage("MACRO IMPORT ERROR", "RECTANGLE DATA IS NOT IN CORRECT FORM.", red);
+					message::logMessage("INFO", "IMPORT PROCESS ABORTED.", yellow);
+					aborted = true;
+					break;
+				}
+				macro_item.screen_scan_area = rect;
+			}
+			continue;
+		}
+		if (parts.at(i) == KEY_HEADER)
+		{
+			tmp_value = getValue(i);
+			macro_item.key = tmp_value;
 			continue;
 		}
 
+	}
+	if (!aborted)
+	{
+		global_macros.push_back(macro_item);
+		message::logMessage("SUCCESS","MACRO IMPORT PROCESS SUCCESSFULLY COMPLETED.",green);
 	}
 }
 
