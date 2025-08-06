@@ -8,7 +8,7 @@ I built this mostly because I was tired of trash tools. So I wrote my own — le
 
 ---
 
-###Features
+### Features
 
 * Clean GUI (no, not some cursed WinForms from 2005)
 * A secret ingredient to make my opponents angry :D
@@ -21,7 +21,7 @@ I built this mostly because I was tired of trash tools. So I wrote my own — le
 
 ---
 
-###Tech Stack
+### Tech Stack
 
 * **Frontend**: C# (.NET)
 * **Core**: C (compiled as DLL)
@@ -31,7 +31,7 @@ I built this mostly because I was tired of trash tools. So I wrote my own — le
 
 ---
 
-###Why Use It
+### Why Use It
 
 Because you want something that just works. No drama. No pop-ups. No weird installers. You run it, set it up, and forget it.
 
@@ -39,7 +39,7 @@ I use it myself every time I log into KO. So yeah — this ain't some half-assed
 
 ---
 
-###Status
+### Status
 
 * Still in active development
 * Currently used on **EUROKO Knight Online** server
@@ -47,7 +47,7 @@ I use it myself every time I log into KO. So yeah — this ain't some half-assed
 
 ---
 
-###About so_you_have_chosen_death.exe
+### About so_you_have_chosen_death.exe
 
 Yeah… that file.
 
