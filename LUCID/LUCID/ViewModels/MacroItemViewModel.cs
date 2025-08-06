@@ -6,7 +6,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace LUCID.ViewModels;
 
-public partial class MacroItemViewModel : ReactiveObject // MACRO ITEM SEND SAMPLE : ID:macroHeader:MS:macroSpeed:CLICK_POINT:clickPosition.x,clickPosition.y:SCAN_RECT:scanArea.x,scanArea.y,scanArea.width,scanArea.height:HOTKEY:macroHotkey
+public partial class MacroItemViewModel : ReactiveObject // MACRO ITEM SEND SAMPLE : MACRO_INFO:ID:macroHeader:MS:macroSpeed:CLICK_POINT:clickPosition.x,clickPosition.y:SCAN_RECT:scanArea.x,scanArea.y,scanArea.width,scanArea.height:HOTKEY:macroHotkey
 {
     [Reactive] public bool isActive { get; set; } = false;
     [Reactive] public string macroHeader { get; set; } = "Macro";
@@ -17,5 +17,5 @@ public partial class MacroItemViewModel : ReactiveObject // MACRO ITEM SEND SAMP
     [Reactive] public Rect? scanArea { get; set; }
 
     public Tab macroTab { get; set; }
-    public string command_header { get; set; } = "sample_header"; 
+    public string macro_header = "sample_header";
 }

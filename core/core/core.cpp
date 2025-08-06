@@ -9,11 +9,12 @@
 #include <thread>
 #include <vector>
 
-#include "messageHandler.h"
+#include "message_handler.h"
 
 #define VERSION L"1.0.1"
 #define PIPE_NAME L"\\\\.\\pipe\\LUCID_MacroPipe"
 #define BUFFER_SIZE 256 // current minimum safe size
+
 
 const std::wstring green = L"\033[32m";
 const std::wstring red = L"\033[31m";
@@ -23,9 +24,6 @@ const std::wstring white = L"\033[0m";
 const std::wstring bold = L"\033[1m";
 
 HANDLE hPipe;
-
-
-
 
 void delay(int ms) {
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
@@ -62,8 +60,8 @@ void ErrorExit(const wchar_t* lpszFunction) {
     std::wcerr << red << bold << L"[FATAL_ERROR] " << lpszFunction << L" process failed with code " << dwError << L" (0x" << std::hex << dwError << L")" << white << std::endl;
 }
 
-std::string ReadNullTerminatedString(HANDLE hPipe) {
-    std::string result;
+std::wstring ReadNullTerminatedString(HANDLE hPipe) {
+    std::wstring result;
     wchar_t buffer;
     DWORD bytesRead;
 
@@ -76,7 +74,7 @@ std::string ReadNullTerminatedString(HANDLE hPipe) {
             else if (GetLastError() != ERROR_SUCCESS) {
                 ErrorExit(L"ReadFile");
             }
-            return "";
+            return L"";
         }
 
         if (buffer == L'\0') {
@@ -87,7 +85,6 @@ std::string ReadNullTerminatedString(HANDLE hPipe) {
 }
 
 HANDLE ConnectToServer() {
-
     printMessageWithDelay(L"INITIATING > P2P Connection Protocol...", cyan, 20);
     delay(500);
 
@@ -163,10 +160,12 @@ void printIntro() {
 )" << white << std::endl;
 }
 
-
 int main() {
-    _setmode(_fileno(stdout), _O_WTEXT);
 
+#if !DEBUG_STATE
+	message::CheckDebuggerAndTriggerPanic();
+#endif
+    _setmode(_fileno(stdout), _O_WTEXT);
     _setmode(_fileno(stdin), _O_TEXT);
 
     std::locale::global(std::locale(""));
@@ -188,7 +187,7 @@ int main() {
 
     while (true) {
         animateWaitingMessage(L"Awaiting data transmission from server", cyan, 5);
-        std::string response = ReadNullTerminatedString(hPipe);
+        std::wstring response = ReadNullTerminatedString(hPipe);
 
         if (response.empty()) {
             printMessageWithDelay(L"FATAL > Server connection lost.", red, 5);
@@ -198,8 +197,10 @@ int main() {
             break;
         }
 
-        std::wcout << green << L"COMMAND_RECEIVED > " << white << response.c_str() << std::endl;
-        message::processMessage(response);
+        std::wcout << green << L"COMMAND_RECEIVED > " << white << response << std::endl;
+
+        std::string narrowResponse(response.begin(), response.end());
+        message::processMessage(narrowResponse);
     }
 
     CloseHandle(hPipe);

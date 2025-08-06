@@ -18,18 +18,24 @@
     <ClCompile Include="core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="messageHandler.cpp">
+    <ClCompile Include="message_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="macro.cpp">
+    <ClCompile Include="macro_management.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="macro_execution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="messageHandler.h">
+    <ClInclude Include="message_handler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="macro.h">
+    <ClInclude Include="macro_management.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="macro_execution.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

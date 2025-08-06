@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using LUCID.Controls;
 using LUCID.Models;
 using System.IO;
@@ -10,6 +11,7 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System.Threading.Tasks;
 using System.Threading;
+using Avalonia;
 using Avalonia.Threading;
 
 namespace LUCID.ViewModels
@@ -181,9 +183,12 @@ namespace LUCID.ViewModels
                     if (_pipeServer.IsConnected)
                     {
                         _isClientConnected = true;
-                        LogStatus("CONNECTED", "Client connected successfully!");
-                        
+                        LogStatus("CONNECTED", "Client connected successfully!"); 
+ // MACRO ITEM SEND SAMPLE : MACRO_INFO:ID:macroHeader:MS:macroSpeed:CLICK_POINT:clickPosition.x,clickPosition.y:SCAN_RECT:scanArea.x,scanArea.y,scanArea.width,scanArea.height:HOTKEY:macroHotkey
                         await SendMessageToClientAsync("MESSAGE:Access granted. Welcome to LUCID central system.");
+                        await SendMessageToClientAsync("MESSAGE:A test of macro import will be made.");
+                        await SendMessageToClientAsync(
+                            "MACRO_INFO:ID:test:MS:1:CLICK_POINT:10,10:SCAN_RECT:0,0,0,0:HOTKEY:TEST");
                         await MaintainClientConnectionAsync(cancellationToken);
                         
                         _isClientConnected = false;
@@ -207,6 +212,16 @@ namespace LUCID.ViewModels
                     await Task.Delay(RETRY_DELAY_MS, cancellationToken);
                 }
             }
+        }
+
+        private async Task SendMacroDataToCore(string id, int ms, Point clickPoint, Rect scanRect, string hotkey )
+        {
+            
+        }
+        
+        private async Task SendMacroDataToCore(MacroItemViewModel item)
+        {
+            
         }
 
         private async Task CreateNewServerInstance()

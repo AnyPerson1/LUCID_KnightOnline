@@ -4,8 +4,8 @@
 #include <optional>
 #include <functional>
 #include <sstream>
-#include "macro.h"
-#include "messageHandler.h"
+#include "macro_management.h"
+#include "message_handler.h"
 
 #define ID_HEADER "ID"
 #define MS_HEADER "MS"
@@ -39,9 +39,8 @@ public:
 	std::optional<Point> click_point;
 	std::optional<Rectangle> screen_scan_area;
 	std::optional<std::string> key;
+	bool active = false;
 };
-
-std::vector<m_item> global_macros;
 
 void macro::import_macro(std::vector<std::string> parts) // MACRO ITEM RECEIVE SAMPLE : ID:macroHeader:MS:macroSpeed:CLICK_POINT:clickPosition.x,clickPosition.y:SCAN_RECT:scanArea.x,scanArea.y,scanArea.width,scanArea.height:HOTKEY:macroHotkey
 {
@@ -142,7 +141,58 @@ void macro::import_macro(std::vector<std::string> parts) // MACRO ITEM RECEIVE S
 	{
 		global_macros.push_back(macro_item);
 		message::logMessage("SUCCESS","MACRO IMPORT PROCESS SUCCESSFULLY COMPLETED.",green);
+		message::logMessage("INFO", "MACRO ID : " + macro_item.id, cyan);
+		if (macro_item.ms.has_value())
+		{
+			message::logMessage("INFO", "MACRO SPEED : " + std::to_string(macro_item.ms.value()) + " ms", cyan);
+		}
+		if (macro_item.click_point.has_value())
+		{
+			message::logMessage("INFO", "MACRO CLICK POINT : (" + std::to_string(macro_item.click_point.value().x) + ", " + std::to_string(macro_item.click_point.value().y) + ")", cyan);
+		}
+		if (macro_item.screen_scan_area.has_value())
+		{
+			message::logMessage("INFO", "MACRO SCAN AREA : (" + std::to_string(macro_item.screen_scan_area.value().x) + ", " + std::to_string(macro_item.screen_scan_area.value().y) + ", " +
+				std::to_string(macro_item.screen_scan_area.value().width) + ", " + std::to_string(macro_item.screen_scan_area.value().height) + ")", cyan);
+		}
+		if (macro_item.key.has_value())
+		{
+			message::logMessage("INFO", "MACRO HOTKEY : " + macro_item.key.value(), cyan);
+		}
+		else
+		{
+			message::logMessage("INFO", "MACRO HOTKEY : NOT SET", cyan);
+		}
+
 	}
+}
+
+void macro::activate_macro(std::string id)
+{
+	for (auto& macro_item : global_macros)
+	{
+		if (macro_item.id == id)
+		{
+			macro_item.active = true;
+			message::logMessage("MACRO ACTIVATED", "MACRO ID : " + id, green);
+			return;
+		}
+	}
+	message::logMessage("MACRO NOT FOUND", "NO MACRO WITH ID : " + id, red);
+}
+
+void macro::deactivate_macro(std::string id)
+{
+	for (auto& macro_item : global_macros)
+	{
+		if (macro_item.id == id)
+		{
+			macro_item.active = false;
+			message::logMessage("MACRO DEACTIVATED", "MACRO ID : " + id, green);
+			return;
+		}
+	}
+	message::logMessage("MACRO NOT FOUND", "NO MACRO WITH ID : " + id, red);
 }
 
 

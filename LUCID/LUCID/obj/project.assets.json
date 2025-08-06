@@ -1920,31 +1920,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\arda4\\.nuget\\packages\\": {},
+    "C:\\Users\\LUCID\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj",
+      "projectUniqueName": "C:\\Users\\LUCID\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj",
       "projectName": "LUCID",
-      "projectPath": "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj",
-      "packagesPath": "C:\\Users\\arda4\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arda4\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\obj\\",
+      "projectPath": "C:\\Users\\LUCID\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\LUCID.csproj",
+      "packagesPath": "C:\\Users\\LUCID\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LUCID\\Desktop\\Github\\LUCID_KnightOnline\\LUCID\\LUCID\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\arda4\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\LUCID\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

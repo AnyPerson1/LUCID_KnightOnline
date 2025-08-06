@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/../../API_Keys" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../PlanePhysics" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../PogoProject" vcs="Git" />
   </component>
 </project>

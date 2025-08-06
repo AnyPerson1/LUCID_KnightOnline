@@ -11,5 +11,7 @@ public:
 	void activate_macro(std::string id);
 public:
 	void deactivate_macro(std::string id);
+public:
+	static std::vector<class m_item> global_macros;
 };
 
