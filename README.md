@@ -13,7 +13,7 @@ So I wrote my own — less bullshit, more control.
 ## 🧠 Features
 
 - Clean GUI (no, not some cursed WinForms from 2005)
-- A secret ingredient to drive opponents insane 😈
+- A secret ingredient to make my opponents angry :D
 - Adjustable delays, auto combo, skill logic
 - Runs smooth, feels native
 - Logs everything (but not in a creepy way... okay, maybe a little)
