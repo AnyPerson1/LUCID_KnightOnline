@@ -54,5 +54,20 @@ I’m not a company.
 Just some guy who codes too much and plays KO at 3AM.
 If you’ve got feedback, bugs, or cursed edge cases — I’m down to chat.
 
+
+
+Bonus: The "so_you_have_chosen_death" file
+You might’ve seen a weird file named so_you_have_chosen_death.exe.
+Yeah… about that.
+
+Let’s just say it’s a debugger deterrent.
+On the surface, it fills and dumps memory in cycles until your machine taps out with a virtual overflow error.
+Not exactly lethal, but let’s say... it encourages people to mind their own business.
+
+I don’t recommend running it.
+Unless you really want to see what RAM abuse looks like.
+
+
+
 "It works for me."
   – me
