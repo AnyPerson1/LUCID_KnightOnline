@@ -2,72 +2,66 @@
 
 Hey.
 
-This is **LUCID**, a macro manager built specifically for Knight Online.  
-Lightweight, modular, and just smart enough to make your life easier without turning into a bloated mess.
+This is **LUCID**, a macro manager built specifically for Knight Online. Lightweight, modular, and just smart enough to make your life easier — without turning into a bloated mess.
 
-I built this mostly because I was tired of trash tools.  
-So I wrote my own — less bullshit, more control.
+I built this mostly because I was tired of trash tools. So I wrote my own — less bullshit, more control.
 
 ---
 
-## 🧠 Features
+### 🧠 Features
 
-- Clean GUI (no, not some cursed WinForms from 2005)
-- A secret ingredient to make my opponents angry :D
-- Adjustable delays, auto combo, skill logic
-- Runs smooth, feels native
-- Logs everything (but not in a creepy way... okay, maybe a little)
-- Zero third-party spyware — because trust still matters
-- And the fun part: **voice control**.  
-  Yeah, I made an AI for that, just because I could.
+* Clean GUI (no, not some cursed WinForms from 2005)
+* A secret ingredient to make my opponents angry :D
+* Adjustable delays, auto combo, skill logic
+* Runs smooth, feels native
+* Logs everything (not in a creepy way... okay, maybe a little)
+* Zero third-party spyware — because trust still matters
+* And the fun part: **voice control**
+  Yep, I built an AI for that. Just because I could.
 
 ---
 
-## 🔧 Technologies
+### 🔧 Tech Stack
 
-```c++
-Frontend   → C# (.NET)  
-Core       → C (compiled as DLL)  
-Interop    → Manual wrapper with DllImport  
-Build IDE  → Visual Studio 2022 (if that matters — I don’t think it does)
-```
+* **Frontend**: C# (.NET)
+* **Core**: C (compiled as DLL)
+* **Interop**: Manual wrapper with DllImport
+* **Build IDE**: Visual Studio 2022 (if that matters — I don’t think it does)
+* Also includes optional inline assembly chaos. Why? Because... why not.
 
-Bonus: optional inline assembly chaos included, because why not.
+---
 
-Why use it❓ 
-Because you want something that just works —
-No drama. No pop-ups. No weird installers.
-You run it, set it up, and forget it.
+### ❓ Why Use It
 
-I use it myself every time I log into KO.
-So yeah — this ain't some abandoned hobby project. It's built to last.
+Because you want something that just works. No drama. No pop-ups. No weird installers. You run it, set it up, and forget it.
 
-📦 Status
-Still in active development
+I use it myself every time I log into KO. So yeah — this ain't some half-assed hobby project. It's built to last.
 
-Currently used on [EUROKO] Knight Online server
+---
 
-Features get added based on need, not hype
+### 📦 Status
 
-Final Words 🗿
-I’m not a company.
-Just some guy who codes too much and plays KO at 3AM.
-If you’ve got feedback, bugs, or cursed edge cases — I’m down to chat.
+* Still in active development
+* Currently used on **EUROKO Knight Online** server
+* New features? Only if they actually matter. No hype crap.
 
+---
 
+### ☠️ About so_you_have_chosen_death.exe
 
-Bonus: The "so_you_have_chosen_death" file
-You might’ve seen a weird file named so_you_have_chosen_death.exe.
-Yeah… about that.
+Yeah… that file.
 
-Let’s just say it’s a debugger deterrent.
-On the surface, it fills and dumps memory in cycles until your machine taps out with a virtual overflow error.
-Not exactly lethal, but let’s say... it encourages people to mind their own business.
+Let’s just say it’s a debugger deterrent. On the surface, it fills and dumps memory in cycles until the machine crashes with a virtual overflow error. Not exactly lethal — but let’s just say it “gently encourages” people to mind their own business.
 
-I don’t recommend running it.
-Unless you really want to see what RAM abuse looks like.
+Do not run it.
+Unless you really want to experience what RAM abuse looks like.
 
+---
 
+### 🗿 Final Words
 
-"It works for me."
-  – me
+I'm not a company. Just some guy who codes too much and plays KO at 3AM.
+
+If you’ve got feedback, bugs, cursed edge cases, or just wanna talk about macros — I’m around.
+
+"It works for me." – me
