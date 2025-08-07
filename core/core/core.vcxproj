@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ExternalIncludePath>C:\Users\LUCID\Desktop\interception;$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>C:\Users\LUCID\Desktop\interception;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -112,6 +116,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalOptions>/LTCG /INCREMENTAL:NO %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>C:\Users\LUCID\Desktop\interception;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,9 +145,16 @@
     <ClCompile Include="message_handler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\interception\interception.h" />
     <ClInclude Include="macro_execution.h" />
     <ClInclude Include="macro_management.h" />
     <ClInclude Include="message_handler.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\interception\interception.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\interception\interception.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

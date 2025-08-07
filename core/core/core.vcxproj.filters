@@ -13,30 +13,52 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\log">
+      <UniqueIdentifier>{0149649a-c175-46e9-8e35-b28f1b2ff7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\macro">
+      <UniqueIdentifier>{6b604be6-7709-46d9-b408-bdd68136d11c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\external">
+      <UniqueIdentifier>{16742628-cc2f-4944-9d58-818d3952787b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="message_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="macro_management.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\log</Filter>
     </ClCompile>
     <ClCompile Include="macro_execution.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\macro</Filter>
+    </ClCompile>
+    <ClCompile Include="macro_management.cpp">
+      <Filter>Source Files\macro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="message_handler.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="macro_management.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\log</Filter>
     </ClInclude>
     <ClInclude Include="macro_execution.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\macro</Filter>
     </ClInclude>
+    <ClInclude Include="macro_management.h">
+      <Filter>Source Files\macro</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\interception\interception.h">
+      <Filter>Source Files\external</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\interception\interception.lib">
+      <Filter>Source Files\external</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\interception\interception.dll">
+      <Filter>Source Files\external</Filter>
+    </None>
   </ItemGroup>
 </Project>

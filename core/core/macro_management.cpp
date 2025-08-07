@@ -42,6 +42,8 @@ public:
 	bool active = false;
 };
 
+std::vector<class m_item> macro::global_macros;
+
 void macro::import_macro(std::vector<std::string> parts) // MACRO ITEM RECEIVE SAMPLE : ID:macroHeader:MS:macroSpeed:CLICK_POINT:clickPosition.x,clickPosition.y:SCAN_RECT:scanArea.x,scanArea.y,scanArea.width,scanArea.height:HOTKEY:macroHotkey
 {
 	m_item macro_item;
